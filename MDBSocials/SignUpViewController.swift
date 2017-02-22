@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     var userNameTextField: TextField!
     var passwordTextField: TextField!
     var signUpButton: UIButton!
+    var loader: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,6 +157,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let name = nameTextField.text!
         let username = userNameTextField.text!
         let password = passwordTextField.text!
+        createLoader()
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
             if error == nil {
                 let ref = FIRDatabase.database().reference().child("Users").child((FIRAuth.auth()?.currentUser?.uid)!)
@@ -177,14 +179,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 //                    self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
                 //
                 //                }
+                self.loader.removeFromSuperview()
                 let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedNavigation") as! UINavigationController
                 self.present(feedVC, animated: true, completion: nil)
             }
             else {
+                self.loader.removeFromSuperview()
                 self.displayErrorMessage(withError: error!)
             }
         })
     }
+    
+    func createLoader() {
+        loader = UIActivityIndicatorView(frame: CGRect(x: view.frame.width / 2 - 15, y: signUpButton.frame.maxY + 10, width: 40, height: 40))
+        loader.startAnimating()
+        loader.tintColor = UIColor.white
+        view.addSubview(loader)
+    }
+    
     func displayErrorMessage(withError error: Error) {
         let errorMessage = UILabel(frame: CGRect(x: 15, y: Int((navigationController?.navigationBar.frame.maxY)! + 10), width: Int(self.view.frame.width - 30), height: 40))
         let description = error.localizedDescription

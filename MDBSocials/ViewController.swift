@@ -116,8 +116,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginClicked() {
-//        let username = userNameTextField.text!
-//        let password = passwordTextField.text!
+        let username = userNameTextField.text!
+        let password = passwordTextField.text!
 //        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
 //            if error == nil {
 //                let ref = FIRDatabase.database().reference().child("Users").child((FIRAuth.auth()?.currentUser?.uid)!)
