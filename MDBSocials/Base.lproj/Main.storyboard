@@ -13,7 +13,7 @@
         <scene sceneID="APv-5k-vlV">
             <objects>
                 <navigationController id="xbI-sg-bvu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Zg-YJ-EF3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7Zg-YJ-EF3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -65,10 +65,26 @@
             </objects>
             <point key="canvasLocation" x="889" y="37"/>
         </scene>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="RM2-zL-ubW">
+            <objects>
+                <navigationController storyboardIdentifier="FeedNavigation" id="dXQ-m2-z6e" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bIi-C9-ddW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="m0w-bs-nma" kind="relationship" relationship="rootViewController" id="UKV-uL-xC1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XFt-8S-q77" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-815" y="752"/>
+        </scene>
+        <!--Feed View Controller-->
         <scene sceneID="BXp-qS-Zjn">
             <objects>
-                <viewController id="m0w-bs-nma" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="m0w-bs-nma" customClass="FeedViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pDy-9q-HLG"/>
                         <viewControllerLayoutGuide type="bottom" id="rEX-sV-Ud4"/>
@@ -78,10 +94,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="wOJ-Ph-RJr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tP1-dk-LsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33" y="761"/>
+            <point key="canvasLocation" x="33" y="752"/>
         </scene>
     </scenes>
 </document>

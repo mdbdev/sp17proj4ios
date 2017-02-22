@@ -14,6 +14,7 @@
 		B43081951E5D6525003DC851 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43081941E5D6525003DC851 /* FeedViewController.swift */; };
 		B43081971E5D84DB003DC851 /* SanFranciscoText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B43081961E5D84DB003DC851 /* SanFranciscoText-Regular.otf */; };
 		B43081991E5D87C3003DC851 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43081981E5D87C3003DC851 /* TextField.swift */; };
+		B430819B1E5D983C003DC851 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430819A1E5D983C003DC851 /* FeedTableViewCell.swift */; };
 		B4B1F97E1E5C288E0047342D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F97D1E5C288E0047342D /* AppDelegate.swift */; };
 		B4B1F9801E5C288F0047342D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F97F1E5C288F0047342D /* ViewController.swift */; };
 		B4B1F9831E5C288F0047342D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4B1F9811E5C288F0047342D /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		B43081941E5D6525003DC851 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B43081961E5D84DB003DC851 /* SanFranciscoText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Regular.otf"; sourceTree = "<group>"; };
 		B43081981E5D87C3003DC851 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		B430819A1E5D983C003DC851 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		B4B1F97A1E5C288E0047342D /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B1F97D1E5C288E0047342D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4B1F97F1E5C288F0047342D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				B4B1F97F1E5C288F0047342D /* ViewController.swift */,
 				B43081921E5D5269003DC851 /* SignUpViewController.swift */,
 				B43081941E5D6525003DC851 /* FeedViewController.swift */,
+				B430819A1E5D983C003DC851 /* FeedTableViewCell.swift */,
 				B43081981E5D87C3003DC851 /* TextField.swift */,
 				B4B1F9811E5C288F0047342D /* Main.storyboard */,
 				B4B1F9861E5C288F0047342D /* LaunchScreen.storyboard */,
@@ -464,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B43081931E5D5269003DC851 /* SignUpViewController.swift in Sources */,
+				B430819B1E5D983C003DC851 /* FeedTableViewCell.swift in Sources */,
 				B4B1F9801E5C288F0047342D /* ViewController.swift in Sources */,
 				B43081951E5D6525003DC851 /* FeedViewController.swift in Sources */,
 				B43081991E5D87C3003DC851 /* TextField.swift in Sources */,

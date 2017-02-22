@@ -108,7 +108,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginButton.setTitle("Login", for: .normal)
         loginButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
         loginButton.setTitleColor(UIColor.white, for: .normal)
-        loginButton.backgroundColor = UIColor(red: 0, green: 204/255, blue: 68/255, alpha: 1)
+        loginButton.backgroundColor = UIColor(red: 0, green: 162/255, blue: 0, alpha: 0.6)
         loginButton.layer.cornerRadius = 10
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(loginClicked), for: .touchUpInside)
@@ -148,7 +148,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorMessage(withError error: Error) {
-        let errorMessage = UILabel(frame: CGRect(x: 10, y: Int(UIApplication.shared.statusBarFrame.maxY + 5), width: Int(self.view.frame.width - 20), height: 40))
+        let errorMessage = UILabel(frame: CGRect(x: 15, y: Int(UIApplication.shared.statusBarFrame.maxY + 5), width: Int(self.view.frame.width - 30), height: 40))
         let description = error.localizedDescription
         errorMessage.textColor = UIColor.white
         errorMessage.font = UIFont.systemFont(ofSize: 15)

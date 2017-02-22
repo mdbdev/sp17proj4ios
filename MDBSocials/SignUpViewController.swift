@@ -37,7 +37,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.isTranslucent = true
     }
     
-    private func textFieldShouldReturn(_ textField: TextField) -> Bool {
+    func textFieldShouldReturn(_ textField: TextField) -> Bool {
         // Try to find next responder
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? TextField {
             nextField.becomeFirstResponder() //advances to next text field when return is pressed
@@ -62,8 +62,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpSignUpTitle() {
-        signUpTitle = UILabel(frame: CGRect(x: 0, y: UIScreen.main.bounds.height * 0.25, width: 100, height: 30))
-        signUpTitle.text = "Sign In"
+        signUpTitle = UILabel(frame: CGRect(x: 0, y: UIScreen.main.bounds.height * 0.22, width: 100, height: 30))
+        signUpTitle.text = "Sign Up"
         signUpTitle.font = UIFont(name: "SanFranciscoText-Regular", size: 35)
         signUpTitle.textColor = UIColor.white
         signUpTitle.sizeToFit()
@@ -85,9 +85,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpNameTextField() {
-        nameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: signUpTitle.frame.maxY + 20, width: 250, height: 30))
-        userNameTextField.textColor = UIColor.white
-        userNameTextField.attributedPlaceholder = NSAttributedString(string: "Username",
+        nameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: signUpTitle.frame.maxY + 20, width: 250, height: 40))
+        nameTextField.textColor = UIColor.white
+        nameTextField.attributedPlaceholder = NSAttributedString(string: "Name",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         nameTextField.layer.borderColor = UIColor.white.cgColor
         nameTextField.layer.borderWidth = 0.6
@@ -98,33 +98,39 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpEmailTextField() {
-        emailTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: nameTextField.frame.maxY + 20, width: 250, height: 30))
-        emailTextField.placeholder = "Email"
-        emailTextField.layer.borderColor = UIColor.lightGray.cgColor
-        emailTextField.layer.borderWidth = 0.5
-        emailTextField.layer.cornerRadius = 3
+        emailTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: nameTextField.frame.maxY + 20, width: 250, height: 40))
+        emailTextField.textColor = UIColor.white
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
+        emailTextField.layer.borderColor = UIColor.white.cgColor
+        emailTextField.layer.borderWidth = 0.6
+        emailTextField.layer.cornerRadius = 10
         emailTextField.layer.masksToBounds = true
         emailTextField.tag = 1
         view.addSubview(emailTextField)
     }
     
     func setUpUserNameTextField() {
-        userNameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: emailTextField.frame.maxY + 20, width: 250, height: 30))
-        userNameTextField.placeholder = "Username"
-        userNameTextField.layer.borderColor = UIColor.lightGray.cgColor
-        userNameTextField.layer.borderWidth = 0.5
-        userNameTextField.layer.cornerRadius = 3
+        userNameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: emailTextField.frame.maxY + 20, width: 250, height: 40))
+        userNameTextField.textColor = UIColor.white
+        userNameTextField.attributedPlaceholder = NSAttributedString(string: "Username",
+                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
+        userNameTextField.layer.borderColor = UIColor.white.cgColor
+        userNameTextField.layer.borderWidth = 0.6
+        userNameTextField.layer.cornerRadius = 10
         userNameTextField.layer.masksToBounds = true
         userNameTextField.tag = 2
         view.addSubview(userNameTextField)
     }
     
     func setUpPasswordTextField() {
-        passwordTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: userNameTextField.frame.maxY + 20, width: 250, height: 30))
-        passwordTextField.placeholder = "Password"
-        passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
-        passwordTextField.layer.borderWidth = 0.5
-        passwordTextField.layer.cornerRadius = 3
+        passwordTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: userNameTextField.frame.maxY + 20, width: 250, height: 40))
+        passwordTextField.textColor = UIColor.white
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                     attributes: [NSForegroundColorAttributeName: UIColor.white])
+        passwordTextField.layer.borderColor = UIColor.white.cgColor
+        passwordTextField.layer.borderWidth = 0.6
+        passwordTextField.layer.cornerRadius = 10
         passwordTextField.layer.masksToBounds = true
         passwordTextField.isSecureTextEntry = true
         passwordTextField.tag = 3
@@ -134,9 +140,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpSignUpButton() {
-        signUpButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 50, y: passwordTextField.frame.maxY + 20, width: 100, height: 30))
-        signUpButton.setTitle("Sign Up", for: .normal)
-        signUpButton.setTitleColor(UIColor.black, for: .normal)
+        signUpButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 125, y: passwordTextField.frame.maxY + 20, width: passwordTextField.frame.width, height: 40))
+        signUpButton.setTitle("Register", for: .normal)
+        signUpButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
+        signUpButton.setTitleColor(UIColor.white, for: .normal)
+        signUpButton.backgroundColor = UIColor(red: 0, green: 162/255, blue: 0, alpha: 0.6)
+        signUpButton.layer.cornerRadius = 10
+        signUpButton.layer.masksToBounds = true
         signUpButton.addTarget(self, action: #selector(signUpClicked), for: .touchUpInside)
         view.addSubview(signUpButton)
     }
@@ -167,6 +177,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 //                    self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
                 //
                 //                }
+                let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedNavigation") as! UINavigationController
+                self.present(feedVC, animated: true, completion: nil)
             }
             else {
                 self.displayErrorMessage(withError: error!)
@@ -174,7 +186,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         })
     }
     func displayErrorMessage(withError error: Error) {
-        let errorMessage = UILabel(frame: CGRect(x: 10, y: Int((navigationController?.navigationBar.frame.maxY)! + 10), width: Int(self.view.frame.width - 20), height: 40))
+        let errorMessage = UILabel(frame: CGRect(x: 15, y: Int((navigationController?.navigationBar.frame.maxY)! + 10), width: Int(self.view.frame.width - 30), height: 40))
         let description = error.localizedDescription
         errorMessage.textColor = UIColor.white
         errorMessage.font = UIFont.systemFont(ofSize: 15)
