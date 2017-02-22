@@ -12,6 +12,8 @@
 		9D732A7A7EF06FAA3371D9AF /* Pods_MDBSocials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF57C078195B4DAC987BCEC /* Pods_MDBSocials.framework */; };
 		B43081931E5D5269003DC851 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43081921E5D5269003DC851 /* SignUpViewController.swift */; };
 		B43081951E5D6525003DC851 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43081941E5D6525003DC851 /* FeedViewController.swift */; };
+		B43081971E5D84DB003DC851 /* SanFranciscoText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B43081961E5D84DB003DC851 /* SanFranciscoText-Regular.otf */; };
+		B43081991E5D87C3003DC851 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43081981E5D87C3003DC851 /* TextField.swift */; };
 		B4B1F97E1E5C288E0047342D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F97D1E5C288E0047342D /* AppDelegate.swift */; };
 		B4B1F9801E5C288F0047342D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F97F1E5C288F0047342D /* ViewController.swift */; };
 		B4B1F9831E5C288F0047342D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4B1F9811E5C288F0047342D /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		9F3B3BCA8D761B488232E267 /* Pods-MDBSocialsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsUITests/Pods-MDBSocialsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B43081921E5D5269003DC851 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B43081941E5D6525003DC851 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		B43081961E5D84DB003DC851 /* SanFranciscoText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Regular.otf"; sourceTree = "<group>"; };
+		B43081981E5D87C3003DC851 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		B4B1F97A1E5C288E0047342D /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B1F97D1E5C288E0047342D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4B1F97F1E5C288F0047342D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,11 +151,13 @@
 				B4B1F97F1E5C288F0047342D /* ViewController.swift */,
 				B43081921E5D5269003DC851 /* SignUpViewController.swift */,
 				B43081941E5D6525003DC851 /* FeedViewController.swift */,
+				B43081981E5D87C3003DC851 /* TextField.swift */,
 				B4B1F9811E5C288F0047342D /* Main.storyboard */,
 				B4B1F9861E5C288F0047342D /* LaunchScreen.storyboard */,
 				B4B1F9841E5C288F0047342D /* Assets.xcassets */,
 				B4B1F9891E5C288F0047342D /* Info.plist */,
 				B4B1F9AB1E5C28E50047342D /* GoogleService-Info.plist */,
+				B43081961E5D84DB003DC851 /* SanFranciscoText-Regular.otf */,
 			);
 			path = MDBSocials;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43081971E5D84DB003DC851 /* SanFranciscoText-Regular.otf in Resources */,
 				B4B1F9881E5C288F0047342D /* LaunchScreen.storyboard in Resources */,
 				B4B1F9851E5C288F0047342D /* Assets.xcassets in Resources */,
 				B4B1F9831E5C288F0047342D /* Main.storyboard in Resources */,
@@ -459,6 +466,7 @@
 				B43081931E5D5269003DC851 /* SignUpViewController.swift in Sources */,
 				B4B1F9801E5C288F0047342D /* ViewController.swift in Sources */,
 				B43081951E5D6525003DC851 /* FeedViewController.swift in Sources */,
+				B43081991E5D87C3003DC851 /* TextField.swift in Sources */,
 				B4B1F97E1E5C288E0047342D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
