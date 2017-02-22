@@ -10,6 +10,8 @@
 		7828CB5E8B47087333FF5966 /* Pods_MDBSocialsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF4906DC8A31FAA2768DB81C /* Pods_MDBSocialsUITests.framework */; };
 		981D859B182041A13BFB6EF2 /* Pods_MDBSocialsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2236496665B0B388330F9F5A /* Pods_MDBSocialsTests.framework */; };
 		9D732A7A7EF06FAA3371D9AF /* Pods_MDBSocials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF57C078195B4DAC987BCEC /* Pods_MDBSocials.framework */; };
+		B43081931E5D5269003DC851 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43081921E5D5269003DC851 /* SignUpViewController.swift */; };
+		B43081951E5D6525003DC851 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43081941E5D6525003DC851 /* FeedViewController.swift */; };
 		B4B1F97E1E5C288E0047342D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F97D1E5C288E0047342D /* AppDelegate.swift */; };
 		B4B1F9801E5C288F0047342D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F97F1E5C288F0047342D /* ViewController.swift */; };
 		B4B1F9831E5C288F0047342D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4B1F9811E5C288F0047342D /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		53C0176FB9E3C7FE3AB1CF51 /* Pods-MDBSocialsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsTests/Pods-MDBSocialsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7BAC1458B3D9FE824DACCE6D /* Pods-MDBSocialsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsUITests/Pods-MDBSocialsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F3B3BCA8D761B488232E267 /* Pods-MDBSocialsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsUITests/Pods-MDBSocialsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B43081921E5D5269003DC851 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B43081941E5D6525003DC851 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B4B1F97A1E5C288E0047342D /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B1F97D1E5C288E0047342D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4B1F97F1E5C288F0047342D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -141,9 +145,11 @@
 			children = (
 				B4B1F97D1E5C288E0047342D /* AppDelegate.swift */,
 				B4B1F97F1E5C288F0047342D /* ViewController.swift */,
+				B43081921E5D5269003DC851 /* SignUpViewController.swift */,
+				B43081941E5D6525003DC851 /* FeedViewController.swift */,
 				B4B1F9811E5C288F0047342D /* Main.storyboard */,
-				B4B1F9841E5C288F0047342D /* Assets.xcassets */,
 				B4B1F9861E5C288F0047342D /* LaunchScreen.storyboard */,
+				B4B1F9841E5C288F0047342D /* Assets.xcassets */,
 				B4B1F9891E5C288F0047342D /* Info.plist */,
 				B4B1F9AB1E5C28E50047342D /* GoogleService-Info.plist */,
 			);
@@ -450,7 +456,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43081931E5D5269003DC851 /* SignUpViewController.swift in Sources */,
 				B4B1F9801E5C288F0047342D /* ViewController.swift in Sources */,
+				B43081951E5D6525003DC851 /* FeedViewController.swift in Sources */,
 				B4B1F97E1E5C288E0047342D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,6 +710,7 @@
 				B4B1F9A41E5C288F0047342D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4B1F9A51E5C288F0047342D /* Build configuration list for PBXNativeTarget "MDBSocialsTests" */ = {
 			isa = XCConfigurationList;
@@ -710,6 +719,7 @@
 				B4B1F9A71E5C288F0047342D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4B1F9A81E5C288F0047342D /* Build configuration list for PBXNativeTarget "MDBSocialsUITests" */ = {
 			isa = XCConfigurationList;
@@ -718,6 +728,7 @@
 				B4B1F9AA1E5C288F0047342D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
