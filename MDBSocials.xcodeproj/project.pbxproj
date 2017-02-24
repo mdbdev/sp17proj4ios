@@ -23,6 +23,9 @@
 		B4B1F9931E5C288F0047342D /* MDBSocialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F9921E5C288F0047342D /* MDBSocialsTests.swift */; };
 		B4B1F99E1E5C288F0047342D /* MDBSocialsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1F99D1E5C288F0047342D /* MDBSocialsUITests.swift */; };
 		B4B1F9AC1E5C28E50047342D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4B1F9AB1E5C28E50047342D /* GoogleService-Info.plist */; };
+		B4E980061E6041E80045843C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E980051E6041E80045843C /* Post.swift */; };
+		B4E980081E6042B40045843C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E980071E6042B40045843C /* User.swift */; };
+		B4E9800A1E604BAD0045843C /* NewSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E980091E604BAD0045843C /* NewSocialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		B4B1F99D1E5C288F0047342D /* MDBSocialsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDBSocialsUITests.swift; sourceTree = "<group>"; };
 		B4B1F99F1E5C288F0047342D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4B1F9AB1E5C28E50047342D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B4E980051E6041E80045843C /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B4E980071E6042B40045843C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B4E980091E604BAD0045843C /* NewSocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSocialViewController.swift; sourceTree = "<group>"; };
 		BB669FE9C2436B8FFA4EC814 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
 		BF4906DC8A31FAA2768DB81C /* Pods_MDBSocialsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDBSocialsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFEE2C3E727EE09DEF41060 /* Pods-MDBSocialsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsTests/Pods-MDBSocialsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,9 +158,12 @@
 				B4B1F97D1E5C288E0047342D /* AppDelegate.swift */,
 				B4B1F97F1E5C288F0047342D /* ViewController.swift */,
 				B43081921E5D5269003DC851 /* SignUpViewController.swift */,
+				B4E980091E604BAD0045843C /* NewSocialViewController.swift */,
 				B43081941E5D6525003DC851 /* FeedViewController.swift */,
 				B430819A1E5D983C003DC851 /* FeedTableViewCell.swift */,
 				B43081981E5D87C3003DC851 /* TextField.swift */,
+				B4E980051E6041E80045843C /* Post.swift */,
+				B4E980071E6042B40045843C /* User.swift */,
 				B4B1F9811E5C288F0047342D /* Main.storyboard */,
 				B4B1F9861E5C288F0047342D /* LaunchScreen.storyboard */,
 				B4B1F9841E5C288F0047342D /* Assets.xcassets */,
@@ -470,7 +479,10 @@
 				B430819B1E5D983C003DC851 /* FeedTableViewCell.swift in Sources */,
 				B4B1F9801E5C288F0047342D /* ViewController.swift in Sources */,
 				B43081951E5D6525003DC851 /* FeedViewController.swift in Sources */,
+				B4E980081E6042B40045843C /* User.swift in Sources */,
+				B4E9800A1E604BAD0045843C /* NewSocialViewController.swift in Sources */,
 				B43081991E5D87C3003DC851 /* TextField.swift in Sources */,
+				B4E980061E6041E80045843C /* Post.swift in Sources */,
 				B4B1F97E1E5C288E0047342D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

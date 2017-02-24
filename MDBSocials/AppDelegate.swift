@@ -13,11 +13,25 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var storyboard: UIStoryboard?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        self.storyboard =  UIStoryboard(name: "Main", bundle: Bundle.main)
+        if FIRAuth.auth()?.currentUser != nil { // if there is user signed in, go to feed
+            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "FeedNavigation")
+        } else { // try second method just in case user is being initialized
+            FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+                if user != nil {
+                    // User is signed in. Show feed screen
+                    self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "FeedNavigation")
+                } else {
+                    // No User is signed in. Show user the login screen
+                    self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginNavigation")
+                }
+            }
+        }
         return true
     }
 

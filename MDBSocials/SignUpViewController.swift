@@ -181,7 +181,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 //                }
                 self.loader.removeFromSuperview()
                 let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedNavigation") as! UINavigationController
-                self.present(feedVC, animated: true, completion: nil)
+                self.show(feedVC, sender: nil)
             }
             else {
                 self.loader.removeFromSuperview()
@@ -198,7 +198,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorMessage(withError error: Error) {
-        let errorMessage = UILabel(frame: CGRect(x: 15, y: Int((navigationController?.navigationBar.frame.maxY)! + 10), width: Int(self.view.frame.width - 30), height: 40))
+        let errorMessage = UILabel(frame: CGRect(x: 20, y: Int((navigationController?.navigationBar.frame.maxY)! + 10), width: Int(self.view.frame.width - 40), height: 40))
         let description = error.localizedDescription
         errorMessage.textColor = UIColor.white
         errorMessage.font = UIFont.systemFont(ofSize: 15)

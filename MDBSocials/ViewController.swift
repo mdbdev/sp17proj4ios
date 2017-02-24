@@ -12,10 +12,11 @@ import Firebase
 class ViewController: UIViewController, UITextFieldDelegate {
 
     var loginTitle: UILabel!
-    var userNameTextField: TextField!
+    var emailTextField: TextField!
     var passwordTextField: TextField!
     var loginButton: UIButton!
     var signUpButton: UIButton!
+    var loader: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,29 +67,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // implement return button!!!
     func setUpTextFields() {
-        setUpUserNameTextField()
+        setUpemailTextField()
         setUpPasswordTextField()
-        userNameTextField.delegate = self
+        emailTextField.delegate = self
         passwordTextField.delegate = self
         UITextField.appearance().tintColor = UIColor.white
     }
     
     
-    func setUpUserNameTextField() {
-        userNameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: loginTitle.frame.maxY + 20, width: 250, height: 40))
-        userNameTextField.textColor = UIColor.white
-        userNameTextField.attributedPlaceholder = NSAttributedString(string: "Username",
+    func setUpemailTextField() {
+        emailTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: loginTitle.frame.maxY + 20, width: 250, height: 40))
+        emailTextField.textColor = UIColor.white
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                attributes: [NSForegroundColorAttributeName: UIColor.white])
-        userNameTextField.layer.borderColor = UIColor.white.cgColor
-        userNameTextField.layer.borderWidth = 0.6
-        userNameTextField.layer.cornerRadius = 10
-        userNameTextField.layer.masksToBounds = true
-        userNameTextField.tag = 0
-        view.addSubview(userNameTextField)
+        emailTextField.layer.borderColor = UIColor.white.cgColor
+        emailTextField.layer.borderWidth = 0.6
+        emailTextField.layer.cornerRadius = 10
+        emailTextField.layer.masksToBounds = true
+        emailTextField.tag = 0
+        view.addSubview(emailTextField)
     }
     
     func setUpPasswordTextField() {
-        passwordTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: userNameTextField.frame.maxY + 20, width: 250, height: 40))
+        passwordTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: emailTextField.frame.maxY + 20, width: 250, height: 40))
         passwordTextField.textColor = UIColor.white
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
@@ -116,39 +117,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginClicked() {
-        let username = userNameTextField.text!
+        let email = emailTextField.text!
         let password = passwordTextField.text!
-//        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
-//            if error == nil {
-//                let ref = FIRDatabase.database().reference().child("Users").child((FIRAuth.auth()?.currentUser?.uid)!)
-//                ref.setValue(["name": name, "email": email, "username": username])
-//                self.emailTextField.text = ""
-//                self.passwordTextField.text = ""
-//                self.nameTextField.text = ""
-//                self.userNameTextField.text = ""
-////                let storage = FIRStorage.storage().reference().child("profilepics/\((FIRAuth.auth()?.currentUser?.uid)!)")
-////                let metadata = FIRStorageMetadata()
-////                metadata.contentType = "image/jpeg"
-////                storage.put(profileImageData!, metadata: metadata).observe(.success) { (snapshot) in
-////                    let url = snapshot.metadata?.downloadURL()?.absoluteString
-////                    ref.setValue(["name": name, "email": email, "imageUrl": url])
-////                    //self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
-////                    self.emailTextField.text = ""
-////                    self.passwordTextField.text = ""
-////                    self.nameTextField.text = ""
-////                    self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
-////                    
-////                }
-//            }
-//            else {
-//                self.displayErrorMessage(withError: error!)
-//            }
-//        })
+        createLoader()
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
+            if error == nil {
+                self.emailTextField.text = ""
+                self.passwordTextField.text = ""
+                self.loader.removeFromSuperview()
+                let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedNavigation") as! UINavigationController
+                self.show(feedVC, sender: nil)
+            }
+            else {
+                self.loader.removeFromSuperview()
+                self.displayErrorMessage(withError: error!)
+            }
+        })
         
     }
     
     func displayErrorMessage(withError error: Error) {
-        let errorMessage = UILabel(frame: CGRect(x: 15, y: Int(UIApplication.shared.statusBarFrame.maxY + 5), width: Int(self.view.frame.width - 30), height: 40))
+        let errorMessage = UILabel(frame: CGRect(x: 20, y: Int(UIApplication.shared.statusBarFrame.maxY + 5), width: Int(self.view.frame.width - 40), height: 40))
         let description = error.localizedDescription
         errorMessage.textColor = UIColor.white
         errorMessage.font = UIFont.systemFont(ofSize: 15)
@@ -178,6 +167,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func signUpClicked() {
         performSegue(withIdentifier: "toSignUp", sender: nil)
     }
+    
+    func createLoader() {
+        loader = UIActivityIndicatorView(frame: CGRect(x: view.frame.width / 2 - 15, y: signUpButton.frame.maxY + 10, width: 40, height: 40))
+        loader.startAnimating()
+        loader.tintColor = UIColor.white
+        view.addSubview(loader)
+    }
 }
 
 extension UIViewController {
@@ -194,7 +190,7 @@ extension UIViewController {
     
     func setUpImage() {
         let backgroundImage = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        backgroundImage.image = #imageLiteral(resourceName: "mdb")
+        backgroundImage.image = #imageLiteral(resourceName: "background")
         view.addSubview(backgroundImage)
     }
     

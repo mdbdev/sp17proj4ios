@@ -12,7 +12,7 @@
         <!--Navigation Controller-->
         <scene sceneID="APv-5k-vlV">
             <objects>
-                <navigationController id="xbI-sg-bvu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigation" id="xbI-sg-bvu" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7Zg-YJ-EF3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -69,7 +69,7 @@
         <scene sceneID="RM2-zL-ubW">
             <objects>
                 <navigationController storyboardIdentifier="FeedNavigation" id="dXQ-m2-z6e" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bIi-C9-ddW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bIi-C9-ddW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -95,10 +95,31 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="wOJ-Ph-RJr"/>
+                    <connections>
+                        <segue destination="Vjd-mU-3VU" kind="presentation" identifier="toNewPost" id="XK9-eE-wrL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tP1-dk-LsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="33" y="752"/>
+        </scene>
+        <!--New Social View Controller-->
+        <scene sceneID="8qf-6k-5sa">
+            <objects>
+                <viewController id="Vjd-mU-3VU" customClass="NewSocialViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NtX-7Q-QII"/>
+                        <viewControllerLayoutGuide type="bottom" id="yNS-pk-o7q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9PI-4N-phZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="74S-bW-lb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831" y="752"/>
         </scene>
     </scenes>
 </document>
