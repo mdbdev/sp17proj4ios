@@ -13,12 +13,18 @@ class FeedViewController: UIViewController {
 
     var tableView: UITableView!
     var posts: [Post] = []
+    var auth = FIRAuth.auth()
+    var postsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Posts")
+    var storage: FIRStorageReference = FIRStorage.storage().reference()
+    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNavBar()
-        setUpTableView()
-        self.automaticallyAdjustsScrollViewInsets = false //makes navbar not cover tableview
+        fetchPosts {
+            self.setUpNavBar()
+            self.setUpTableView()
+            self.automaticallyAdjustsScrollViewInsets = false //makes navbar not cover tableview
+        }
     }
     
     func setUpNavBar() {
@@ -32,14 +38,15 @@ class FeedViewController: UIViewController {
     
     func newPost() {
         self.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-        self.modalPresentationStyle = .currentContext
-//        let newVC = self.storyboard?.instantiateViewController(withIdentifier: "NewSocialVC") as! NewSocialViewController
-//        self.present(newVC, animated: true, completion: nil)
-        performSegue(withIdentifier: "toNewPost", sender: self)
+        self.modalPresentationStyle = .popover
+        let newVC = self.storyboard?.instantiateViewController(withIdentifier: "NewSocialVC") as! NewSocialViewController
+        newVC.delegate = self
+        self.present(newVC, animated: true, completion: nil)
+//        performSegue(withIdentifier: "toNewPost", sender: self)
     }
     
     func logOut() {
-        let firebaseAuth = FIRAuth.auth()
+        let firebaseAuth = auth
         do {
             try firebaseAuth?.signOut()
             let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginNavigation") as! UINavigationController
@@ -62,12 +69,27 @@ class FeedViewController: UIViewController {
         view.addSubview(tableView)
     }
 
+    func addNewPostToDatabase(post: [String: Any]) {
+        let key = postsRef.childByAutoId().key
+        let childUpdates = ["/\(key)/": post]
+        postsRef.updateChildValues(childUpdates)
+    }
+    
+    func fetchPosts(withBlock: @escaping () -> ()) {
+        //TODO: Implement a method to fetch posts with Firebase!
+        let ref = FIRDatabase.database().reference()
+        ref.child("Posts").observe(.childAdded, with: { (snapshot) in
+            let post = Post(id: snapshot.key, postDict: snapshot.value as! [String : Any]?)
+            self.posts.append(post)
+            withBlock() //ensures that next block is called
+        })
+    }
 }
 
 extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return posts.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as! FeedTableViewCell
@@ -81,7 +103,11 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    
+}
 
-    
-    
+extension FeedViewController: NewSocialViewControllerDelegate {
+    func sendValue(_ info: [String: Any]) { //gets the information from new post
+        addNewPostToDatabase(post: info)
+    }
 }

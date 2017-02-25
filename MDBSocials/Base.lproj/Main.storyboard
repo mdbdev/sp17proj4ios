@@ -95,9 +95,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="wOJ-Ph-RJr"/>
-                    <connections>
-                        <segue destination="Vjd-mU-3VU" kind="presentation" identifier="toNewPost" id="XK9-eE-wrL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tP1-dk-LsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +103,7 @@
         <!--New Social View Controller-->
         <scene sceneID="8qf-6k-5sa">
             <objects>
-                <viewController id="Vjd-mU-3VU" customClass="NewSocialViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewSocialVC" id="Vjd-mU-3VU" customClass="NewSocialViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NtX-7Q-QII"/>
                         <viewControllerLayoutGuide type="bottom" id="yNS-pk-o7q"/>
