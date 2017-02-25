@@ -10,7 +10,7 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
 
-    var memberName: UILabel!
+    var author: UILabel!
     var eventName: UILabel!
     var eventPicture: UIImageView!
     var interests: UIButton!
@@ -26,23 +26,23 @@ class FeedTableViewCell: UITableViewCell {
         eventPicture.layer.masksToBounds = true
         contentView.addSubview(eventPicture)
         
-        eventName = UILabel(frame: CGRect(x: eventPicture.frame.maxX + contentView.frame.width * 0.3, y: eventPicture.frame.minY, width: 50, height: 50))
-        eventName.text = "Field Day"
-        eventName.font = UIFont.boldSystemFont(ofSize: 15)
-        eventName.sizeToFit()
-        contentView.addSubview(eventName)
-        memberName = UILabel(frame: CGRect(x: 0, y: eventName.frame.minY + 25, width: 50, height: 50))
-        memberName.text = "Posted by Boris Yue"
-        memberName.font = UIFont.systemFont(ofSize: 13)
-        memberName.sizeToFit()
-        memberName.frame.origin.x = eventPicture.frame.maxX + contentView.frame.width * 0.3 - memberName.frame.width / 4
-        contentView.addSubview(memberName)
+        
+        setUpEventNameText()
+        setUpMemberNameText()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setUpEventNameText() {
+        eventName = UILabel(frame: CGRect(x: eventPicture.frame.maxX + contentView.frame.width * 0.3, y: eventPicture.frame.minY, width: 50, height: 50))
+        eventName.font = UIFont.boldSystemFont(ofSize: 15)
+        contentView.addSubview(eventName)
+    }
+    
+    func setUpMemberNameText() {
+        author = UILabel(frame: CGRect(x: 0, y: eventName.frame.minY + 25, width: 50, height: 50))
+        author.font = UIFont.systemFont(ofSize: 13)
+//        author.sizeToFit()
+//        author.frame.origin.x = eventPicture.frame.maxX + contentView.frame.width * 0.3 - author.frame.width / 4
+        contentView.addSubview(author)
     }
 
 }

@@ -17,7 +17,6 @@ class Post {
     var name: String?
     var description: String?
     var imageUrl: String?
-    var image: UIImage?
     var id: String?
     var interestedUsers: [String] = [] //contains IDs
     var date: String?
@@ -39,6 +38,9 @@ class Post {
             }
             if let date = postDict!["date"] as? String {
                 self.date = date
+            }
+            if let imageUrl = postDict!["imageUrl"] as? String {
+                self.imageUrl = imageUrl
             }
         }
     }

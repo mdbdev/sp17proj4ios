@@ -45,9 +45,9 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        deregisterFromKeyboardNotifications() //get rid of keyboard listeners
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        deregisterFromKeyboardNotifications() //get rid of keyboard listeners
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Try to find next responder
@@ -176,8 +176,18 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     }
     
     func postSocial() {
-        delegate?.sendValue(["name": name.text, "date": date.text, "description": eventDescription.text, "author": currentUser?.name, "authorId": currentUser?.id])
-        dismiss(animated: true, completion: nil)
+        if eventPic.image == nil || name.text! == "" || date.text! == "" || eventDescription.text! == "" {
+            return
+        }
+        let image = UIImageJPEGRepresentation(eventPic.image!, 0.9)
+        let storage = FIRStorage.storage().reference().child("EventPics/\(currentUser?.id)")
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpeg"
+        storage.put(image!, metadata: metadata).observe(.success) { (snapshot) in
+            let url = snapshot.metadata?.downloadURL()?.absoluteString
+            self.delegate?.sendValue(["name": self.name.text, "date": self.date.text, "description": self.eventDescription.text, "author": self.currentUser?.name, "authorId": self.currentUser?.id, "imageUrl": url])
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     func fetchUser(withBlock: @escaping () -> ()) {
@@ -215,8 +225,8 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     
     func deregisterFromKeyboardNotifications() {
         //Removing notifies on keyboard appearing
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
     func keyboardWasShown(_ notification: Notification) {

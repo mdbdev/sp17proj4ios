@@ -17,6 +17,7 @@ class FeedViewController: UIViewController {
     var postsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Posts")
     var storage: FIRStorageReference = FIRStorage.storage().reference()
     var currentUser: User?
+    var postToPass: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +43,14 @@ class FeedViewController: UIViewController {
         let newVC = self.storyboard?.instantiateViewController(withIdentifier: "NewSocialVC") as! NewSocialViewController
         newVC.delegate = self
         self.present(newVC, animated: true, completion: nil)
-//        performSegue(withIdentifier: "toNewPost", sender: self)
     }
     
     func logOut() {
         let firebaseAuth = auth
         do {
             try firebaseAuth?.signOut()
-            let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginNavigation") as! UINavigationController
-            self.show(feedVC, sender: nil)
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginNavigation") as! UINavigationController
+            self.show(loginVC, sender: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
@@ -84,6 +84,13 @@ class FeedViewController: UIViewController {
             withBlock() //ensures that next block is called
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetail" {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.post = postToPass
+        }
+    }
 }
 
 extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
@@ -97,11 +104,18 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
             subview.removeFromSuperview() //remove stuff from cell before initializing
         }
         cell.awakeFromNib() //initialize cell
+        let currentPost = posts[indexPath.row]
+        cell.eventName.text = currentPost.name
+        cell.eventName.sizeToFit()
+        cell.author.text = "Posted by " + currentPost.author!
+        cell.author.sizeToFit()
+        cell.author.frame.origin.x = cell.eventName.frame.minX - cell.author.frame.width / 2 + cell.eventName.frame.width / 2
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        postToPass = posts[indexPath.row]
+        performSegue(withIdentifier: "toDetail", sender: self)
     }
     
 }
