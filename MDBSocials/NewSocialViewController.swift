@@ -30,13 +30,15 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     var purpleColor = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
     var delegate: NewSocialViewControllerDelegate? = nil
     var currentUser: User?
+    var errorLabel: UILabel!
+    var loader: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        self.setUpScrollView()
+        self.setUpNavBar()
         fetchUser {
-            self.hideKeyboardWhenTappedAround()
-            self.setUpScrollView()
-            self.setUpNavBar()
             self.setUpImageView()
             self.setUpUploadPicButton()
             self.setUpTextFields()
@@ -44,10 +46,6 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
             self.registerForKeyboardNotifications() //make keyboard listeners for scrolling text field
         }
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        deregisterFromKeyboardNotifications() //get rid of keyboard listeners
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Try to find next responder
@@ -66,7 +64,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") { // go back when line is skipped AKA enter is pressed
             textView.resignFirstResponder()
-            dismiss(animated: true, completion: nil)
+            postSocial()
         }
         return true
     }
@@ -176,18 +174,44 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     }
     
     func postSocial() {
-        if eventPic.image == nil || name.text! == "" || date.text! == "" || eventDescription.text! == "" {
+        if eventPic.image == nil || name.text! == "" || date.text! == "" || eventDescription.text == "" {
+            setUpErrorLabel()
             return
         }
         let image = UIImageJPEGRepresentation(eventPic.image!, 0.9)
-        let storage = FIRStorage.storage().reference().child("EventPics/\(currentUser?.id)")
+        let imageName = NSUUID().uuidString
+        let storage = FIRStorage.storage().reference().child("EventPics/\(imageName).png")
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"
+        createLoader()
         storage.put(image!, metadata: metadata).observe(.success) { (snapshot) in
+            self.loader.removeFromSuperview()
             let url = snapshot.metadata?.downloadURL()?.absoluteString
             self.delegate?.sendValue(["name": self.name.text, "date": self.date.text, "description": self.eventDescription.text, "author": self.currentUser?.name, "authorId": self.currentUser?.id, "imageUrl": url])
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func createLoader() {
+        if let _ = errorLabel { //get rid of error text if it exists
+            if errorLabel.text != "" {
+                errorLabel.removeFromSuperview()
+            }
+        }
+        loader = UIActivityIndicatorView(frame: CGRect(x: view.frame.width / 2 - 20, y: postButton.frame.maxY , width: 40, height: 40))
+        loader.startAnimating()
+        loader.color = UIColor.black
+        scrollView.addSubview(loader)
+    }
+    
+    func setUpErrorLabel() {
+        errorLabel = UILabel(frame: CGRect(x: 0, y: postButton.frame.maxY + 10, width: 50, height: 5))
+        errorLabel.text = "Please fill in all fields."
+        errorLabel.font = UIFont.systemFont(ofSize: 12)
+        errorLabel.sizeToFit()
+        errorLabel.textColor = UIColor.red
+        errorLabel.frame.origin.x = view.frame.width / 2 - errorLabel.frame.width / 2
+        scrollView.addSubview(errorLabel)
     }
     
     func fetchUser(withBlock: @escaping () -> ()) {
@@ -260,7 +284,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
 extension NewSocialViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //MARK: - Delegates
     func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+                                       didFinishPickingMediaWithInfo info: [String : Any]) {
         uploadPicButton.removeFromSuperview()
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         eventPic.image = chosenImage

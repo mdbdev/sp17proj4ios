@@ -17,6 +17,7 @@ class Post {
     var name: String?
     var description: String?
     var imageUrl: String?
+    var image: UIImage?
     var id: String?
     var interestedUsers: [String] = [] //contains IDs
     var date: String?
@@ -30,8 +31,8 @@ class Post {
             if let author = postDict!["author"] as? String {
                 self.author = author
             }
-            if let authorId = postDict!["authorId"] as? Int {
-                self.authorId = "\(authorId)"
+            if let authorId = postDict!["authorId"] as? String {
+                self.authorId = authorId
             }
             if let name = postDict!["name"] as? String {
                 self.name = name
@@ -41,6 +42,18 @@ class Post {
             }
             if let imageUrl = postDict!["imageUrl"] as? String {
                 self.imageUrl = imageUrl
+            }
+        }
+    }
+    
+    func getProfilePic(withBlock: @escaping (UIImage) -> ()) {
+        let ref = FIRStorage.storage().reference(forURL: imageUrl!) // use image URL to download image from storage
+        ref.data(withMaxSize: 1 * 2048 * 2048) { data, error in
+            if let error = error {
+                print(error)
+            } else {
+                self.image = UIImage(data: data!)
+                withBlock(self.image!)
             }
         }
     }

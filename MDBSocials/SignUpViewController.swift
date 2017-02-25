@@ -166,19 +166,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self.passwordTextField.text = ""
                 self.nameTextField.text = ""
                 self.userNameTextField.text = ""
-                //                let storage = FIRStorage.storage().reference().child("profilepics/\((FIRAuth.auth()?.currentUser?.uid)!)")
-                //                let metadata = FIRStorageMetadata()
-                //                metadata.contentType = "image/jpeg"
-                //                storage.put(profileImageData!, metadata: metadata).observe(.success) { (snapshot) in
-                //                    let url = snapshot.metadata?.downloadURL()?.absoluteString
-                //                    ref.setValue(["name": name, "email": email, "imageUrl": url])
-                //                    //self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
-                //                    self.emailTextField.text = ""
-                //                    self.passwordTextField.text = ""
-                //                    self.nameTextField.text = ""
-                //                    self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
-                //
-                //                }
                 self.loader.removeFromSuperview()
                 let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedNavigation") as! UINavigationController
                 self.show(feedVC, sender: nil)

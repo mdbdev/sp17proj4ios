@@ -21,11 +21,15 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavBar()
         fetchPosts {
-            self.setUpNavBar()
-            self.setUpTableView()
-            self.automaticallyAdjustsScrollViewInsets = false //makes navbar not cover tableview
+            self.setUpUI()
         }
+    }
+    
+    func setUpUI() {
+        setUpTableView()
+        automaticallyAdjustsScrollViewInsets = false //makes navbar not cover tableview
     }
     
     func setUpNavBar() {
@@ -77,8 +81,7 @@ class FeedViewController: UIViewController {
     
     func fetchPosts(withBlock: @escaping () -> ()) {
         //TODO: Implement a method to fetch posts with Firebase!
-        let ref = FIRDatabase.database().reference()
-        ref.child("Posts").observe(.childAdded, with: { (snapshot) in
+        postsRef.observe(.childAdded, with: { (snapshot) in
             let post = Post(id: snapshot.key, postDict: snapshot.value as! [String : Any]?)
             self.posts.append(post)
             withBlock() //ensures that next block is called
@@ -105,8 +108,14 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.awakeFromNib() //initialize cell
         let currentPost = posts[indexPath.row]
+        DispatchQueue.main.async {
+            currentPost.getProfilePic(withBlock: {(image) in
+                cell.eventPicture.image = image
+            })
+        }
         cell.eventName.text = currentPost.name
         cell.eventName.sizeToFit()
+        cell.eventName.frame.origin.x = cell.eventPicture.frame.maxX + ((view.frame.width - cell.eventPicture.frame.maxX) / 2.25) - cell.eventName.frame.width / 2
         cell.author.text = "Posted by " + currentPost.author!
         cell.author.sizeToFit()
         cell.author.frame.origin.x = cell.eventName.frame.minX - cell.author.frame.width / 2 + cell.eventName.frame.width / 2
@@ -115,7 +124,8 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postToPass = posts[indexPath.row]
-        performSegue(withIdentifier: "toDetail", sender: self)
+        self.performSegue(withIdentifier: "toDetail", sender: self)
+    
     }
     
 }

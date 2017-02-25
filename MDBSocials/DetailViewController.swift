@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     func setUpPic() {
         let dimmension = view.frame.width * 0.4
         image = UIImageView(frame: CGRect(x: view.frame.width * 0.05, y: (navigationController?.navigationBar.frame.maxY)! + 30, width: dimmension, height: dimmension))
+        image.image = post.image
         image.layer.cornerRadius = 5
         image.backgroundColor = UIColor.black
         image.layer.masksToBounds = true
