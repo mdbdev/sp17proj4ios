@@ -63,8 +63,8 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.awakeFromNib() //initialize cell
         cell.name.text = names[indexPath.row]
-        cell.sizeToFit()
-        cell.name.frame.origin.x = cell.contentView.frame.width / 2 - cell.name.frame.width / 2
+        cell.name.sizeToFit()
+        cell.name.frame.origin.x = view.frame.width / 2 - cell.name.frame.width / 2
         cell.name.frame.origin.y = cell.contentView.frame.height / 2 - cell.name.frame.height / 2
         return cell
     }

@@ -76,9 +76,12 @@ class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataS
         view.addSubview(tableView)
     }
     
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return UIImage()
-    }
+//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+//        let imageView = UIImageView(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
+//        imageView.image = #imageLiteral(resourceName: "mdb")
+//        scrollView.addSubview(imageView)
+//        return imageView.image
+//    }
 
     func addNewPostToDatabase(post: [String: Any]) {
         let key = postsRef.childByAutoId().key
@@ -114,7 +117,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
             subview.removeFromSuperview() //remove stuff from cell before initializing
         }
         cell.awakeFromNib() //initialize cell
-        let currentPost = posts[indexPath.row]
+        let currentPost = posts[posts.count - 1 - indexPath.row]
         DispatchQueue.main.async {
             currentPost.getProfilePic(withBlock: {(image) in
                 cell.eventPicture.image = image
@@ -137,7 +140,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        postToPass = posts[indexPath.row]
+        postToPass = posts[posts.count - 1 - indexPath.row]
         self.performSegue(withIdentifier: "toDetail", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     
