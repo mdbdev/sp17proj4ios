@@ -8,6 +8,7 @@ target 'MDBSocials' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'DZNEmptyDataSet'
   # Pods for MDBSocials
 
   target 'MDBSocialsTests' do

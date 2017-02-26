@@ -85,6 +85,7 @@ class DetailViewController: UIViewController {
         numInterestedButton.backgroundColor = purple
         numInterestedButton.layer.cornerRadius = 3
         numInterestedButton.layer.masksToBounds = true
+        numInterestedButton.addTarget(self, action: #selector(viewInterested), for: .touchUpInside)
         view.addSubview(numInterestedButton)
         
     }
@@ -99,6 +100,17 @@ class DetailViewController: UIViewController {
         interestedButton.addTarget(self, action: #selector(interestedClicked), for: .touchUpInside)
         interestedButton.isSelected = false
         view.addSubview(interestedButton)
+    }
+    
+    func viewInterested() {
+        performSegue(withIdentifier: "toList", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toList" {
+            let listVC = segue.destination as! ListViewController
+            listVC.names = post.interestedUsers
+        }
     }
     
     func interestedClicked() {

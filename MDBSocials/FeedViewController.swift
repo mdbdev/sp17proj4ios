@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import DZNEmptyDataSet
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     var tableView: UITableView!
     var posts: [Post] = []
@@ -67,10 +68,16 @@ class FeedViewController: UIViewController {
         //Set properties of TableView
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         tableView.rowHeight = 120
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 150 / 2, right: 0)
         tableView.tableFooterView = UIView() // gets rid of the extra cells beneath
         view.addSubview(tableView)
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage()
     }
 
     func addNewPostToDatabase(post: [String: Any]) {
@@ -92,7 +99,6 @@ class FeedViewController: UIViewController {
         if segue.identifier == "toDetail" {
             let detailVC = segue.destination as! DetailViewController
             detailVC.post = postToPass
-//            detailVC.user = FIRAuth.auth()?.currentUser
         }
     }
 }
