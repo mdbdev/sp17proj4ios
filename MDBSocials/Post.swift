@@ -43,6 +43,9 @@ class Post {
             if let imageUrl = postDict!["imageUrl"] as? String {
                 self.imageUrl = imageUrl
             }
+            if let interestedUsers = postDict!["interestedUsers"] as? [String] {
+                self.interestedUsers = interestedUsers
+            }
         }
     }
     

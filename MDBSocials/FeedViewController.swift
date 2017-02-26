@@ -16,9 +16,8 @@ class FeedViewController: UIViewController {
     var auth = FIRAuth.auth()
     var postsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Posts")
     var storage: FIRStorageReference = FIRStorage.storage().reference()
-    var currentUser: User?
     var postToPass: Post?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavBar()
@@ -26,6 +25,7 @@ class FeedViewController: UIViewController {
             self.setUpUI()
         }
     }
+
     
     func setUpUI() {
         setUpTableView()
@@ -92,6 +92,7 @@ class FeedViewController: UIViewController {
         if segue.identifier == "toDetail" {
             let detailVC = segue.destination as! DetailViewController
             detailVC.post = postToPass
+//            detailVC.user = FIRAuth.auth()?.currentUser
         }
     }
 }
@@ -119,12 +120,20 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         cell.author.text = "Posted by " + currentPost.author!
         cell.author.sizeToFit()
         cell.author.frame.origin.x = cell.eventName.frame.minX - cell.author.frame.width / 2 + cell.eventName.frame.width / 2
+        cell.date.text = "Happening on " + currentPost.date!
+        cell.date.sizeToFit()
+        cell.date.frame.origin.x = cell.eventName.frame.minX - cell.date.frame.width / 2 + cell.eventName.frame.width / 2
+        cell.interests.text = "\(currentPost.interestedUsers.count)" + " Interested"
+        cell.interests.sizeToFit()
+        cell.interests.frame.origin.x = cell.eventName.frame.minX - cell.interests.frame.width / 2 + cell.eventName.frame.width / 2 + cell.interestsImage.frame.width / 2//move it to the right a bit to center with icon
+        cell.interestsImage.frame.origin.x = cell.interests.frame.minX - cell.interestsImage.frame.width - 3
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postToPass = posts[indexPath.row]
         self.performSegue(withIdentifier: "toDetail", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     
     }
     

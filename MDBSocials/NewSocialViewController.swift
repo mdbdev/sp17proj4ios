@@ -187,7 +187,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
         storage.put(image!, metadata: metadata).observe(.success) { (snapshot) in
             self.loader.removeFromSuperview()
             let url = snapshot.metadata?.downloadURL()?.absoluteString
-            self.delegate?.sendValue(["name": self.name.text, "date": self.date.text, "description": self.eventDescription.text, "author": self.currentUser?.name, "authorId": self.currentUser?.id, "imageUrl": url])
+            self.delegate?.sendValue(["name": self.name.text, "date": self.date.text, "description": self.eventDescription.text, "author": self.currentUser?.name, "authorId": self.currentUser?.id, "imageUrl": url, "interestedUsers": []])
             self.dismiss(animated: true, completion: nil)
         }
     }
