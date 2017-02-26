@@ -19,7 +19,6 @@ class FeedViewController: UIViewController {
     var currentUser: User?
     var clickedPost: Post!
     
-    
     //For sample post
     let samplePost = Post()
     
