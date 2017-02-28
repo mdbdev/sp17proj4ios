@@ -76,13 +76,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     func setUpemailTextField() {
-        emailTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: loginTitle.frame.maxY + 20, width: 250, height: 40))
+        emailTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: loginTitle.frame.maxY + 20, width: 250, height: Constants.textFieldHeight))
         emailTextField.textColor = UIColor.white
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                attributes: [NSForegroundColorAttributeName: UIColor.white])
         emailTextField.layer.borderColor = UIColor.white.cgColor
-        emailTextField.layer.borderWidth = 0.6
-        emailTextField.layer.cornerRadius = 10
+        emailTextField.layer.borderWidth = Constants.signInBorderWidth
+        emailTextField.layer.cornerRadius = Constants.signInCornerRadius
         emailTextField.layer.masksToBounds = true
         emailTextField.tag = 0
         view.addSubview(emailTextField)
@@ -94,8 +94,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.layer.borderWidth = 0.6
-        passwordTextField.layer.cornerRadius = 10
+        passwordTextField.layer.borderWidth = Constants.signInBorderWidth
+        passwordTextField.layer.cornerRadius = Constants.signInCornerRadius
         passwordTextField.layer.masksToBounds = true
         passwordTextField.isSecureTextEntry = true
         passwordTextField.tag = 1
@@ -105,12 +105,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpLoginButton() {
-        loginButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 125, y: passwordTextField.frame.maxY + 20, width: passwordTextField.frame.width, height: 40))
+        loginButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 125, y: passwordTextField.frame.maxY + 20, width: passwordTextField.frame.width, height: Constants.textFieldHeight))
         loginButton.setTitle("Login", for: .normal)
         loginButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
         loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.backgroundColor = UIColor(red: 0, green: 162/255, blue: 0, alpha: 0.6)
-        loginButton.layer.cornerRadius = 10
+        loginButton.layer.cornerRadius = Constants.signInCornerRadius
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(loginClicked), for: .touchUpInside)
         view.addSubview(loginButton)
@@ -137,13 +137,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorMessage(withError error: Error) {
-        let errorMessage = UILabel(frame: CGRect(x: 20, y: Int(UIApplication.shared.statusBarFrame.maxY + 5), width: Int(self.view.frame.width - 40), height: 40))
+        let errorMessage = UILabel(frame: CGRect(x: 20, y: Int(UIApplication.shared.statusBarFrame.maxY + 5), width: Int(self.view.frame.width - 40), height: Int(Constants.textFieldHeight)))
         let description = error.localizedDescription
         errorMessage.textColor = UIColor.white
         errorMessage.font = UIFont.systemFont(ofSize: 15)
         errorMessage.backgroundColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1)
         errorMessage.textAlignment = .center
-        errorMessage.layer.cornerRadius = 10
+        errorMessage.layer.cornerRadius = Constants.signInCornerRadius
         errorMessage.clipsToBounds = true
         if description.contains("internal") {
             errorMessage.text = "Something is wrong. Try again."
@@ -154,7 +154,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpSignUpButton() {
-        signUpButton = UIButton(frame: CGRect(x: view.frame.width / 2, y: loginButton.frame.maxY + 10, width: 60, height: 40))
+        signUpButton = UIButton(frame: CGRect(x: view.frame.width / 2, y: loginButton.frame.maxY + 10, width: 60, height: Constants.textFieldHeight))
         signUpButton.setTitle("Create An Account", for: .normal)
         signUpButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
         signUpButton.sizeToFit()
@@ -169,7 +169,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func createLoader() {
-        loader = UIActivityIndicatorView(frame: CGRect(x: view.frame.width / 2 - 15, y: signUpButton.frame.maxY + 10, width: 40, height: 40))
+        loader = UIActivityIndicatorView(frame: CGRect(x: view.frame.width / 2 - 15, y: signUpButton.frame.maxY + 10, width: 40, height: Constants.textFieldHeight))
         loader.startAnimating()
         loader.tintColor = UIColor.white
         view.addSubview(loader)

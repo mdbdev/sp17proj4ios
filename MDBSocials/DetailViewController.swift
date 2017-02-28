@@ -21,7 +21,6 @@ class DetailViewController: UIViewController {
     var descriptionTitle: UILabel!
     var numInterestedButton: UIButton!
     var interestedButton: UIButton!
-    var purple = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +55,7 @@ class DetailViewController: UIViewController {
         name.sizeToFit()
         name.frame.origin.y = image.frame.maxY + 10
         name.frame.origin.x = view.frame.width / 2 - name.frame.width / 2
-        name.textColor = purple
+        name.textColor = Constants.purpleColor
         view.addSubview(name)
     }
     
@@ -82,7 +81,7 @@ class DetailViewController: UIViewController {
         numInterestedButton = UIButton(frame: CGRect(x: view.frame.width / 2 - view.frame.width * 0.35, y: date.frame.maxY + 20, width: view.frame.width / 3, height: 35))
         numInterestedButton.setTitle("\(post.interestedUsers.count)" + " people interested", for: .normal)
         numInterestedButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        numInterestedButton.backgroundColor = purple
+        numInterestedButton.backgroundColor = Constants.purpleColor
         numInterestedButton.layer.cornerRadius = 3
         numInterestedButton.layer.masksToBounds = true
         numInterestedButton.addTarget(self, action: #selector(viewInterested), for: .touchUpInside)
@@ -94,7 +93,7 @@ class DetailViewController: UIViewController {
         interestedButton = UIButton(frame: CGRect(x: numInterestedButton.frame.maxX + 15, y: date.frame.maxY + 20, width: view.frame.width / 3, height: 35))
         interestedButton.setTitle("Interested", for: .normal)
         interestedButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        interestedButton.backgroundColor = purple
+        interestedButton.backgroundColor = Constants.purpleColor
         interestedButton.layer.cornerRadius = 3
         interestedButton.layer.masksToBounds = true
         interestedButton.addTarget(self, action: #selector(interestedClicked), for: .touchUpInside)

@@ -86,52 +86,52 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpNameTextField() {
-        nameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: signUpTitle.frame.maxY + 20, width: 250, height: 40))
+        nameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: signUpTitle.frame.maxY + 20, width: 250, height: Constants.textFieldHeight))
         nameTextField.textColor = UIColor.white
         nameTextField.attributedPlaceholder = NSAttributedString(string: "Name",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         nameTextField.layer.borderColor = UIColor.white.cgColor
-        nameTextField.layer.borderWidth = 0.6
-        nameTextField.layer.cornerRadius = 10
+        nameTextField.layer.borderWidth = Constants.signInBorderWidth
+        nameTextField.layer.cornerRadius = Constants.signInCornerRadius
         nameTextField.layer.masksToBounds = true
         nameTextField.tag = 0 //used for pressing return, advances to next text field
         view.addSubview(nameTextField)
     }
     
     func setUpEmailTextField() {
-        emailTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: nameTextField.frame.maxY + 20, width: 250, height: 40))
+        emailTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: nameTextField.frame.maxY + 20, width: 250, height: Constants.textFieldHeight))
         emailTextField.textColor = UIColor.white
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         emailTextField.layer.borderColor = UIColor.white.cgColor
-        emailTextField.layer.borderWidth = 0.6
-        emailTextField.layer.cornerRadius = 10
+        emailTextField.layer.borderWidth = Constants.signInBorderWidth
+        emailTextField.layer.cornerRadius = Constants.signInCornerRadius
         emailTextField.layer.masksToBounds = true
         emailTextField.tag = 1
         view.addSubview(emailTextField)
     }
     
     func setUpUserNameTextField() {
-        userNameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: emailTextField.frame.maxY + 20, width: 250, height: 40))
+        userNameTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: emailTextField.frame.maxY + 20, width: 250, height: Constants.textFieldHeight))
         userNameTextField.textColor = UIColor.white
         userNameTextField.attributedPlaceholder = NSAttributedString(string: "Username",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         userNameTextField.layer.borderColor = UIColor.white.cgColor
-        userNameTextField.layer.borderWidth = 0.6
-        userNameTextField.layer.cornerRadius = 10
+        userNameTextField.layer.borderWidth = Constants.signInBorderWidth
+        userNameTextField.layer.cornerRadius = Constants.signInCornerRadius
         userNameTextField.layer.masksToBounds = true
         userNameTextField.tag = 2
         view.addSubview(userNameTextField)
     }
     
     func setUpPasswordTextField() {
-        passwordTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: userNameTextField.frame.maxY + 20, width: 250, height: 40))
+        passwordTextField = TextField(frame: CGRect(x: view.frame.width / 2 - 125, y: userNameTextField.frame.maxY + 20, width: 250, height: Constants.textFieldHeight))
         passwordTextField.textColor = UIColor.white
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.layer.borderWidth = 0.6
-        passwordTextField.layer.cornerRadius = 10
+        passwordTextField.layer.borderWidth = Constants.signInBorderWidth
+        passwordTextField.layer.cornerRadius = Constants.signInCornerRadius
         passwordTextField.layer.masksToBounds = true
         passwordTextField.isSecureTextEntry = true
         passwordTextField.tag = 3
@@ -141,12 +141,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUpSignUpButton() {
-        signUpButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 125, y: passwordTextField.frame.maxY + 20, width: passwordTextField.frame.width, height: 40))
+        signUpButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 125, y: passwordTextField.frame.maxY + 20, width: passwordTextField.frame.width, height: Constants.textFieldHeight))
         signUpButton.setTitle("Register", for: .normal)
         signUpButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
         signUpButton.setTitleColor(UIColor.white, for: .normal)
         signUpButton.backgroundColor = UIColor(red: 0, green: 162/255, blue: 0, alpha: 0.6)
-        signUpButton.layer.cornerRadius = 10
+        signUpButton.layer.cornerRadius = Constants.signInCornerRadius
         signUpButton.layer.masksToBounds = true
         signUpButton.addTarget(self, action: #selector(signUpClicked), for: .touchUpInside)
         view.addSubview(signUpButton)
@@ -178,20 +178,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func createLoader() {
-        loader = UIActivityIndicatorView(frame: CGRect(x: view.frame.width / 2 - 15, y: signUpButton.frame.maxY + 10, width: 40, height: 40))
+        loader = UIActivityIndicatorView(frame: CGRect(x: view.frame.width / 2 - 15, y: signUpButton.frame.maxY + 10, width: 40, height: Constants.textFieldHeight))
         loader.startAnimating()
         loader.tintColor = UIColor.white
         view.addSubview(loader)
     }
     
     func displayErrorMessage(withError error: Error) {
-        let errorMessage = UILabel(frame: CGRect(x: 20, y: Int((navigationController?.navigationBar.frame.maxY)! + 10), width: Int(self.view.frame.width - 40), height: 40))
+        let errorMessage = UILabel(frame: CGRect(x: 20, y: Int((navigationController?.navigationBar.frame.maxY)! + 10), width: Int(self.view.frame.width - 40), height: Int(Constants.textFieldHeight)))
         let description = error.localizedDescription
         errorMessage.textColor = UIColor.white
         errorMessage.font = UIFont.systemFont(ofSize: 15)
         errorMessage.backgroundColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1)
         errorMessage.textAlignment = .center
-        errorMessage.layer.cornerRadius = 10
+        errorMessage.layer.cornerRadius = Constants.signInCornerRadius
         errorMessage.clipsToBounds = true
         if description.contains("internal") {
             errorMessage.text = "Something is wrong. Try again."

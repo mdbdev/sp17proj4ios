@@ -26,8 +26,6 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     var scrollTextField: UITextView?
     var date: TextField!
     var postButton: UIButton!
-    let textFieldHeight: CGFloat = 40
-    var purpleColor = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
     var delegate: NewSocialViewControllerDelegate? = nil
     var currentUser: User?
     var errorLabel: UILabel!
@@ -79,7 +77,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
         navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.09))
         navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navBar.tintColor = UIColor.white
-        navBar.barTintColor = purpleColor
+        navBar.barTintColor = Constants.purpleColor
         let navItem = UINavigationItem(title: "New Social")
         navItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBack))
         navBar.items = [navItem]
@@ -95,7 +93,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
         let dimmension = view.frame.width * 0.6
         eventPic = UIImageView(frame: CGRect(x: view.frame.width / 2 - dimmension / 2, y: navBar.frame.maxY + 20, width: dimmension, height: dimmension))
         eventPic.backgroundColor = UIColor.lightGray
-        eventPic.layer.cornerRadius = 5
+        eventPic.layer.cornerRadius = Constants.regularCornerRadius
         eventPic.layer.masksToBounds = true
         picker.delegate = self
         scrollView.addSubview(eventPic)
@@ -130,20 +128,20 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     }
     
     func setUpNameTextField() {
-        name = TextField(frame: CGRect(x: view.frame.width / 2 - eventPic.frame.width / 2, y: eventPic.frame.maxY + 15, width: eventPic.frame.width, height: textFieldHeight))
+        name = TextField(frame: CGRect(x: view.frame.width / 2 - eventPic.frame.width / 2, y: eventPic.frame.maxY + 15, width: eventPic.frame.width, height: Constants.textFieldHeight))
         name.placeholder = "Event Name"
-        name.layer.borderWidth = 0.4
-        name.layer.cornerRadius = 5
+        name.layer.borderWidth = Constants.regularBorderWidth
+        name.layer.cornerRadius = Constants.regularCornerRadius
         name.layer.masksToBounds = true
         name.tag = 0
         scrollView.addSubview(name)
     }
     
     func setUpDateTextField() {
-        date = TextField(frame: CGRect(x: view.frame.width / 2 - eventPic.frame.width / 2, y: name.frame.maxY + 15, width: eventPic.frame.width, height: textFieldHeight))
+        date = TextField(frame: CGRect(x: view.frame.width / 2 - eventPic.frame.width / 2, y: name.frame.maxY + 15, width: eventPic.frame.width, height: Constants.textFieldHeight))
         date.placeholder = "Event Date, Day and Time"
-        date.layer.borderWidth = 0.4
-        date.layer.cornerRadius = 5
+        date.layer.borderWidth = Constants.regularBorderWidth
+        date.layer.cornerRadius = Constants.regularCornerRadius
         date.layer.masksToBounds = true
         date.tag = 1
         scrollView.addSubview(date)
@@ -151,8 +149,8 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     
     func setUpDescriptonTextField() {
         eventDescription = UITextView(frame: CGRect(x: view.frame.width / 2 - eventPic.frame.width / 2, y: date.frame.maxY + 15, width: eventPic.frame.width, height: 200))
-        eventDescription.layer.borderWidth = 0.4
-        eventDescription.layer.cornerRadius = 5
+        eventDescription.layer.borderWidth = Constants.regularBorderWidth
+        eventDescription.layer.cornerRadius = Constants.regularCornerRadius
         eventDescription.layer.masksToBounds = true
         eventDescription.text = "Event Description" // set placeholder cause textview has no placeholder value
         eventDescription.font = UIFont.systemFont(ofSize: 17)
@@ -165,9 +163,9 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     func setUpPostButton() {
         postButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 40, y: eventDescription.frame.maxY + 10, width: 80, height: 30))
         postButton.setTitle("Post!", for: .normal)
-        postButton.backgroundColor = purpleColor
+        postButton.backgroundColor = Constants.purpleColor
         postButton.setTitleColor(UIColor.white, for: .normal)
-        postButton.layer.cornerRadius = 5
+        postButton.layer.cornerRadius = Constants.regularCornerRadius
         postButton.layer.masksToBounds = true
         postButton.addTarget(self, action: #selector(postSocial), for: .touchUpInside)
         scrollView.addSubview(postButton)
@@ -179,7 +177,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
             return
         }
         let image = UIImageJPEGRepresentation(eventPic.image!, 0.9)
-        let imageName = NSUUID().uuidString
+        let imageName = NSUUID().uuidString //generate unique id for each image
         let storage = FIRStorage.storage().reference().child("EventPics/\(imageName).png")
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"

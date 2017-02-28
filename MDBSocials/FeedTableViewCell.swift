@@ -31,7 +31,7 @@ class FeedTableViewCell: UITableViewCell {
     
     func setUpImage() {
         eventPicture = UIImageView(frame: CGRect(x: 40, y: contentView.frame.height / 2 - 50, width: 100, height: 100))
-        eventPicture.layer.cornerRadius = 5
+        eventPicture.layer.cornerRadius = Constants.regularCornerRadius
         eventPicture.layer.masksToBounds = true
         contentView.addSubview(eventPicture)
     }
@@ -39,7 +39,7 @@ class FeedTableViewCell: UITableViewCell {
     func setUpEventNameText() {
         eventName = UILabel(frame: CGRect(x: 0, y: eventPicture.frame.minY + 10, width: 50, height: 50))
         eventName.font = UIFont.boldSystemFont(ofSize: 18)
-        eventName.textColor = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
+        eventName.textColor = Constants.purpleColor
         contentView.addSubview(eventName)
     }
     

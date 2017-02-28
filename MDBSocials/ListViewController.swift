@@ -11,7 +11,6 @@ import UIKit
 class ListViewController: UIViewController {
 
     var navBar: UINavigationBar!
-    var purpleColor = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
     var names: [String] = []
     var tableView: UITableView!
     
@@ -25,7 +24,7 @@ class ListViewController: UIViewController {
         navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.09))
         navBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navBar.tintColor = UIColor.white
-        navBar.barTintColor = purpleColor
+        navBar.barTintColor = Constants.purpleColor
         let navItem = UINavigationItem(title: "Interested Users")
         navItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBack))
         navBar.items = [navItem]

@@ -37,7 +37,7 @@ class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataS
         self.title = "Feed"
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.barTintColor = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = Constants.purpleColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOut))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "New Post", style: .plain, target: self, action: #selector(newPost))
     }
