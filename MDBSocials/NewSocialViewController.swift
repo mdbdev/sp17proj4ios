@@ -216,12 +216,9 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
     
     func fetchUser(withBlock: @escaping () -> ()) {
         //TODO: Implement a method to fetch posts with Firebase!
-        let ref = FIRDatabase.database().reference()
-        ref.child("Users").child((FIRAuth.auth()?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-            let user = User(id: snapshot.key, userDict: snapshot.value as! [String : Any]?)
+        User.generateUserModel(withId: (FIRAuth.auth()?.currentUser?.uid)!, withBlock: { (user) in //generating user in user class
             self.currentUser = user
             withBlock()
-            
         })
     }
     

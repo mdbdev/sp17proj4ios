@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Firebase
 
 class User {
     var name: String?
@@ -28,5 +29,13 @@ class User {
                 self.username = username
             }
         }
+    }
+    
+    static func generateUserModel(withId: String, withBlock: @escaping (User) -> Void) {
+        let childRef = FIRDatabase.database().reference().child("Users").child(withId)
+        childRef.observeSingleEvent(of: .value, with: { snapshot in
+            let user = User(id: snapshot.key, userDict: snapshot.value as! [String : Any]?)
+            withBlock(user)
+        })
     }
 }
