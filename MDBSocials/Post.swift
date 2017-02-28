@@ -62,12 +62,16 @@ class Post {
         }
     }
     
-    func getInterestedUsers() {
+    func getInterestedUsers(withBlock: @escaping (Int) -> Void) {
         postRef.child(self.id!).observeSingleEvent(of: .value, with: { snapshot in
             let value = snapshot.value as? NSDictionary
-            if let idArray = value?["interestedUsers"] as? [String] {
-                print(idArray)
-            }
+            let idArray = value?["interestedUsers"] as? [String] ?? []
+//                for val in idArray {
+//                    User.generateUserModel(withId: val, withBlock: { user in //how to pass list of users??
+//                        
+//                    })
+//                }
+            withBlock(idArray.count)
         })
     }
     

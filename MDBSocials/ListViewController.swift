@@ -62,10 +62,13 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
             subview.removeFromSuperview() //remove stuff from cell before initializing
         }
         cell.awakeFromNib() //initialize cell
-        cell.name.text = names[indexPath.row]
-        cell.name.sizeToFit()
-        cell.name.frame.origin.x = view.frame.width / 2 - cell.name.frame.width / 2
-        cell.name.frame.origin.y = cell.contentView.frame.height / 2 - cell.name.frame.height / 2
+        let currentId = names[indexPath.row]
+        User.generateUserModel(withId: currentId, withBlock: { user in
+            cell.name.text = user.name
+            cell.name.sizeToFit()
+            cell.name.frame.origin.x = self.view.frame.width / 2 - cell.name.frame.width / 2
+            cell.name.frame.origin.y = cell.contentView.frame.height / 2 - cell.name.frame.height / 2
+        })
         return cell
     }
 

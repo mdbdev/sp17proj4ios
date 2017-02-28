@@ -25,8 +25,8 @@ class FeedTableViewCell: UITableViewCell {
         setUpEventNameText()
         setUpMemberNameText()
         setUpDateText()
-        setUpInterestsImage()
-        setUpNumInterested()
+//        setUpInterestsImage()
+//        setUpNumInterested()
     }
     
     func setUpImage() {
@@ -55,16 +55,16 @@ class FeedTableViewCell: UITableViewCell {
         contentView.addSubview(date)
     }
     
-    func setUpInterestsImage() {
-        interestsImage = UIImageView(frame: CGRect(x: 0, y: date.frame.minY + 18, width: 20, height: 20))
-        interestsImage.image = #imageLiteral(resourceName: "people")
-        contentView.addSubview(interestsImage)
-    }
-    
-    func setUpNumInterested() {
-        interests = UILabel(frame: CGRect(x: 0, y: date.frame.minY + 20, width: 50, height: 50))
-        interests.font = UIFont.systemFont(ofSize: 12)
-        contentView.addSubview(interests)
-    }
+//    func setUpInterestsImage() {
+//        interestsImage = UIImageView(frame: CGRect(x: 0, y: date.frame.minY + 18, width: 20, height: 20))
+//        interestsImage.image = #imageLiteral(resourceName: "people")
+//        contentView.addSubview(interestsImage)
+//    }
+//    
+//    func setUpNumInterested() {
+//        interests = UILabel(frame: CGRect(x: 0, y: date.frame.minY + 20, width: 50, height: 50))
+//        interests.font = UIFont.systemFont(ofSize: 12)
+//        contentView.addSubview(interests)
+//    }
 
 }
