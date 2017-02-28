@@ -21,6 +21,7 @@ class Post {
     var id: String?
     var interestedUsers: [String] = [] //contains IDs
     var date: String?
+    let postRef = FIRDatabase.database().reference().child("Posts")
     
     init(id: String, postDict: [String:Any]?) {
         self.id = id
@@ -59,6 +60,29 @@ class Post {
                 withBlock(self.image!)
             }
         }
+    }
+    
+    func getInterestedUsers() {
+        postRef.child(self.id!).observeSingleEvent(of: .value, with: { snapshot in
+            let value = snapshot.value as? NSDictionary
+            if let idArray = value?["interestedUsers"] as? [String] {
+                print(idArray)
+            }
+        })
+    }
+    
+    func addInterestedUser(withId: String) {
+        if !self.interestedUsers.contains(withId) {
+            self.interestedUsers.append(withId)
+            let childUpdates = ["\(self.id!)/interestedUsers": self.interestedUsers]
+            postRef.updateChildValues(childUpdates) //update interested array
+        }
+    }
+    
+    func removeInterestedUser(withId: String) {
+        self.interestedUsers.remove(at: self.interestedUsers.index(of: withId)!)
+        let childUpdates = ["\(self.id!)/interestedUsers": self.interestedUsers]
+        postRef.updateChildValues(childUpdates) //update interested array
     }
     
 

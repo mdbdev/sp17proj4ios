@@ -114,18 +114,13 @@ class DetailViewController: UIViewController {
     }
     
     func interestedClicked() {
-        let ref = FIRDatabase.database().reference().child("Posts")
         if !interestedButton.isSelected {
             interestedButton.setTitle("Not Interested", for: .normal)
-            if !post.interestedUsers.contains(currentUser.name!) { //ensure no repeats
-                post.interestedUsers.append(currentUser.name!)
-            }
+            post.addInterestedUser(withId: currentUser.id!)
         } else {
             interestedButton.setTitle("Interested", for: .normal)
-            post.interestedUsers.remove(at: post.interestedUsers.index(of: currentUser.name!)!)
+            post.removeInterestedUser(withId: currentUser.id!)
         }
-        let childUpdates = ["\(post.id!)/interestedUsers": post.interestedUsers]
-        ref.updateChildValues(childUpdates) //update interested array 
         numInterestedButton.setTitle("\(post.interestedUsers.count)" + " people interested", for: .normal) //change number
         interestedButton.isSelected = !interestedButton.isSelected
     }

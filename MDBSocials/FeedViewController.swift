@@ -132,6 +132,8 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         cell.date.text = "Happening on " + currentPost.date!
         cell.date.sizeToFit()
         cell.date.frame.origin.x = cell.eventName.frame.minX - cell.date.frame.width / 2 + cell.eventName.frame.width / 2
+        
+        currentPost.getInterestedUsers()
         cell.interests.text = "\(currentPost.interestedUsers.count)" + " Interested"
         cell.interests.sizeToFit()
         cell.interests.frame.origin.x = cell.eventName.frame.minX - cell.interests.frame.width / 2 + cell.eventName.frame.width / 2 + cell.interestsImage.frame.width / 2//move it to the right a bit to center with icon
