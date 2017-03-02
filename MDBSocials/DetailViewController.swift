@@ -9,6 +9,11 @@
 import UIKit
 import Firebase
 
+enum GoingStatus {
+    case interested
+    case notResponded
+}
+
 class DetailViewController: UIViewController {
 
     var post: Post!

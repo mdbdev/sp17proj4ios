@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol FeedCellDelegate {
+    
+    func addInterestedUser(forCell: FeedTableViewCell)
+    func removeInterestedUser(forCell: FeedTableViewCell)
+}
+
 class FeedTableViewCell: UITableViewCell {
 
     var author: UILabel!
@@ -16,6 +22,8 @@ class FeedTableViewCell: UITableViewCell {
     var date: UILabel!
     var interestsImage: UIImageView!
     var interests: UILabel!
+    var interestedButton: UIButton!
+    var delegate: FeedCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,8 +33,8 @@ class FeedTableViewCell: UITableViewCell {
         setUpEventNameText()
         setUpMemberNameText()
         setUpDateText()
-//        setUpInterestsImage()
-//        setUpNumInterested()
+        addInterestedButton()
+
     }
     
     func setUpImage() {
@@ -55,16 +63,27 @@ class FeedTableViewCell: UITableViewCell {
         contentView.addSubview(date)
     }
     
-//    func setUpInterestsImage() {
-//        interestsImage = UIImageView(frame: CGRect(x: 0, y: date.frame.minY + 18, width: 20, height: 20))
-//        interestsImage.image = #imageLiteral(resourceName: "people")
-//        contentView.addSubview(interestsImage)
-//    }
-//    
-//    func setUpNumInterested() {
-//        interests = UILabel(frame: CGRect(x: 0, y: date.frame.minY + 20, width: 50, height: 50))
-//        interests.font = UIFont.systemFont(ofSize: 12)
-//        contentView.addSubview(interests)
-//    }
-
+    func addInterestedButton() {
+        interestedButton = UIButton()
+        interestedButton.layer.cornerRadius = 2
+        interestedButton.layer.masksToBounds = true
+        interestedButton.setTitle("Interested", for: .normal)
+        interestedButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        interestedButton.backgroundColor = Constants.purpleColor
+        interestedButton.addTarget(self, action: #selector(addInterestedUser), for: .touchUpInside)
+        interestedButton.isSelected = false
+        contentView.addSubview(interestedButton)
+    }
+    
+    func addInterestedUser() {
+        interestedButton.setTitle("Interested!", for: .selected)
+        if !interestedButton.isSelected {
+            delegate?.addInterestedUser(forCell: self)
+        } else {
+            delegate?.removeInterestedUser(forCell: self)
+        }
+        interestedButton.isSelected = !interestedButton.isSelected
+        
+    }
+    
 }

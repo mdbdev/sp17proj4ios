@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import DZNEmptyDataSet
-
+// IMPLEMENT LIVE UPDATES!!!
 class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     var tableView: UITableView!
@@ -117,7 +117,9 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
             subview.removeFromSuperview() //remove stuff from cell before initializing
         }
         cell.awakeFromNib() //initialize cell
-        let currentPost = posts[posts.count - 1 - indexPath.row]
+        cell.delegate = self
+        let currentPost = posts[posts.count - 1 - indexPath.row] //show most recent posts first
+        cell.tag = posts.count - 1 - indexPath.row //associate row number with each cell
         DispatchQueue.main.async {
             currentPost.getProfilePic(withBlock: {(image) in
                 cell.eventPicture.image = image
@@ -142,8 +144,10 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
             cell.contentView.addSubview(cell.interests)
             cell.interests.text = "\(count)" + " Interested"
             cell.interests.sizeToFit()
-            cell.interests.frame.origin.x = cell.eventName.frame.minX - cell.interests.frame.width / 2 + cell.eventName.frame.width / 2 + cell.interestsImage.frame.width / 2//move it to the right a bit to center with icon
+            cell.interests.frame.origin.x = cell.eventName.frame.minX - cell.interests.frame.width / 2 + cell.eventName.frame.width / 2 + cell.interestsImage.frame.width / 2 - 35//move it to the right a bit to center with icon
             cell.interestsImage.frame.origin.x = cell.interests.frame.minX - cell.interestsImage.frame.width - 3
+            cell.interestedButton.frame = CGRect(x: cell.interests.frame.maxX + 8, y: cell.date.frame.minY + 20, width: 70, height: cell.interests.frame.height )
+
         })
         return cell
     }
@@ -160,5 +164,15 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
 extension FeedViewController: NewSocialViewControllerDelegate {
     func sendValue(_ info: [String: Any]) { //gets the information from new post
         addNewPostToDatabase(post: info)
+    }
+}
+
+extension FeedViewController: FeedCellDelegate {
+    func addInterestedUser(forCell: FeedTableViewCell) {
+        posts[forCell.tag].addInterestedUser(withId: (FIRAuth.auth()?.currentUser?.uid)!)
+    }
+    
+    func removeInterestedUser(forCell: FeedTableViewCell) {
+        posts[forCell.tag].removeInterestedUser(withId: (FIRAuth.auth()?.currentUser?.uid)!)
     }
 }

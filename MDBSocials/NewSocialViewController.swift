@@ -176,7 +176,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
             setUpErrorLabel()
             return
         }
-        let image = UIImageJPEGRepresentation(eventPic.image!, 0.9)
+        let image = UIImageJPEGRepresentation(eventPic.image!.imageResize(sizeChange: CGSize(width: 500, height: 500)), 0.9)
         let imageName = NSUUID().uuidString //generate unique id for each image
         let storage = FIRStorage.storage().reference().child("EventPics/\(imageName).png")
         let metadata = FIRStorageMetadata()
@@ -288,5 +288,21 @@ extension NewSocialViewController: UIImagePickerControllerDelegate, UINavigation
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension UIImage {
+    
+    func imageResize (sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = true
+        let scale: CGFloat = 0.0 // Use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        self.draw(in: CGRect(origin: CGPoint.zero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage!
+    }
+    
 }
 
