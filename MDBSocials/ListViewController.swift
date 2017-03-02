@@ -13,11 +13,31 @@ class ListViewController: UIViewController {
     var navBar: UINavigationBar!
     var names: [String] = []
     var tableView: UITableView!
+    var emptyView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavBar()
-        setUpTableView()
+        if names.count == 0 {
+            setUpEmptyTable()
+        } else {
+            setUpTableView()
+        }
+    }
+    
+    func setUpEmptyTable() {
+        //empty view
+        emptyView = UIView()
+        let emptyImage = UIImageView(frame: CGRect(x: view.frame.width / 2 - 75, y: view.frame.height / 2 - view.frame.width * 0.25, width: 150, height: 150))
+        emptyImage.image = #imageLiteral(resourceName: "people")
+        emptyView.addSubview(emptyImage)
+        let emptyLabel = UILabel()
+        emptyLabel.text = "No interested users yet."
+        emptyLabel.sizeToFit()
+        emptyLabel.frame.origin.x = view.frame.width / 2 - emptyLabel.frame.width / 2
+        emptyLabel.frame.origin.y = emptyImage.frame.maxY
+        emptyView.addSubview(emptyLabel)
+        view.addSubview(emptyView)
     }
 
     func setUpNavBar() {

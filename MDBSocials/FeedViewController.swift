@@ -8,15 +8,15 @@
 
 import UIKit
 import Firebase
-import DZNEmptyDataSet
 
 enum GoingStatus {
     case interested
     case notResponded
 }
 
-class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class FeedViewController: UIViewController {
 
+    var emptyView: UIView!
     var tableView: UITableView!
     var posts: [Post] = []
     var auth = FIRAuth.auth()
@@ -27,11 +27,28 @@ class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavBar()
+        setUpEmptyTable()
         fetchPosts {
             self.setUpUI()
         }
     }
-
+    
+    func setUpEmptyTable() {
+        //empty view
+        emptyView = UIView()
+        if posts.count == 0 {
+            let emptyImage = UIImageView(frame: CGRect(x: view.frame.width / 2 - 50, y: view.frame.height / 2 - view.frame.width * 0.25, width: 100, height: 100))
+            emptyImage.image = #imageLiteral(resourceName: "newpost")
+            emptyView.addSubview(emptyImage)
+            let emptyLabel = UILabel()
+            emptyLabel.text = "No posts to show."
+            emptyLabel.sizeToFit()
+            emptyLabel.frame.origin.x = view.frame.width / 2 - emptyLabel.frame.width / 2
+            emptyLabel.frame.origin.y = emptyImage.frame.maxY + 20
+            emptyView.addSubview(emptyLabel)
+            view.addSubview(emptyView)
+        }
+    }
     
     func setUpUI() {
         setUpTableView()
@@ -67,26 +84,18 @@ class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataS
     }
     
     func setUpTableView() {
+        emptyView.removeFromSuperview()
         tableView = UITableView(frame: CGRect(x: 0, y: (navigationController?.navigationBar.frame.maxY)!, width: view.frame.width, height: view.frame.height))
         //Register the tableViewCell you are using
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "feedCell")
         //Set properties of TableView
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
         tableView.rowHeight = 120
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 150 / 2, right: 0)
         tableView.tableFooterView = UIView() // gets rid of the extra cells beneath
         view.addSubview(tableView)
     }
-    
-//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-//        let imageView = UIImageView(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
-//        imageView.image = #imageLiteral(resourceName: "mdb")
-//        scrollView.addSubview(imageView)
-//        return imageView.image
-//    }
 
     func addNewPostToDatabase(post: [String: Any]) {
         let key = postsRef.childByAutoId().key
@@ -148,7 +157,8 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
                 updateCell.interests.sizeToFit()
                 updateCell.interests.frame.origin.x = updateCell.eventName.frame.minX - updateCell.interests.frame.width / 2 + updateCell.eventName.frame.width / 2 + updateCell.interestsImage.frame.width / 2 - 35//move it to the right a bit to center with icon
                 updateCell.interests.frame.origin.y = updateCell.date.frame.minY + 20
-                updateCell.interestsImage.frame.origin.x = updateCell.interests.frame.minX - updateCell.interestsImage.frame.width - 3
+                let xPos = updateCell.interests.frame.minX - 23
+                updateCell.interestsImage.frame = CGRect(x: xPos, y: updateCell.date.frame.minY + 17, width: 20, height: 20)
                 updateCell.interestedButton.frame = CGRect(x: updateCell.interests.frame.maxX + 8, y: updateCell.date.frame.minY + 20, width: 70, height: updateCell.interests.frame.height )
             }
         })

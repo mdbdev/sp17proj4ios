@@ -67,6 +67,7 @@ class FeedTableViewCell: UITableViewCell {
     
     func addInterestedIcon() {
         interestsImage = UIImageView()
+        interestsImage.frame.size = CGSize(width: 20, height: 20)
         interestsImage.image = #imageLiteral(resourceName: "people")
         contentView.addSubview(interestsImage)
     }
