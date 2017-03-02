@@ -52,7 +52,6 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
         } else if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextView {
             // no more text fields after
             nextField.becomeFirstResponder()
-//            loginClicked()
         } else {
             dismiss(animated: true, completion: nil)
         }
@@ -176,7 +175,7 @@ class NewSocialViewController: UIViewController, UITextFieldDelegate, UITextView
             setUpErrorLabel()
             return
         }
-        let image = UIImageJPEGRepresentation(eventPic.image!.imageResize(sizeChange: CGSize(width: 500, height: 500)), 0.9)
+        let image = UIImageJPEGRepresentation(eventPic.image!.imageResize(sizeChange: CGSize(width: 300, height: 300)), 0.9)
         let imageName = NSUUID().uuidString //generate unique id for each image
         let storage = FIRStorage.storage().reference().child("EventPics/\(imageName).png")
         let metadata = FIRStorageMetadata()

@@ -145,7 +145,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         signUpButton.setTitle("Register", for: .normal)
         signUpButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
         signUpButton.setTitleColor(UIColor.white, for: .normal)
-        signUpButton.backgroundColor = UIColor(red: 0, green: 162/255, blue: 0, alpha: 0.6)
+        signUpButton.backgroundColor = Constants.greenColor
         signUpButton.layer.cornerRadius = Constants.signInCornerRadius
         signUpButton.layer.masksToBounds = true
         signUpButton.addTarget(self, action: #selector(signUpClicked), for: .touchUpInside)

@@ -113,18 +113,14 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as! FeedTableViewCell
-        for subview in cell.contentView.subviews {
-            subview.removeFromSuperview() //remove stuff from cell before initializing
-        }
+        MDBSocialsUtils.clearCell(cell: cell)
         cell.awakeFromNib() //initialize cell
         cell.delegate = self
         let currentPost = posts[posts.count - 1 - indexPath.row] //show most recent posts first
         cell.tag = posts.count - 1 - indexPath.row //associate row number with each cell
-        DispatchQueue.main.async {
-            currentPost.getProfilePic(withBlock: {(image) in
-                cell.eventPicture.image = image
-            })
-        }
+        currentPost.getProfilePic(withBlock: {(image) in
+            cell.eventPicture.image = image
+        })
         cell.eventName.text = currentPost.name
         cell.eventName.sizeToFit()
         cell.eventName.frame.origin.x = cell.eventPicture.frame.maxX + ((view.frame.width - cell.eventPicture.frame.maxX) / 2.25) - cell.eventName.frame.width / 2

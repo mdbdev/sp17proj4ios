@@ -109,7 +109,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginButton.setTitle("Login", for: .normal)
         loginButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
         loginButton.setTitleColor(UIColor.white, for: .normal)
-        loginButton.backgroundColor = UIColor(red: 0, green: 162/255, blue: 0, alpha: 0.6)
+        loginButton.backgroundColor = Constants.greenColor
         loginButton.layer.cornerRadius = Constants.signInCornerRadius
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(loginClicked), for: .touchUpInside)

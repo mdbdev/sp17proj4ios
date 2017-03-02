@@ -31,6 +31,7 @@
 		B4E9804E1E6287100045843C /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9804D1E6287100045843C /* ListTableViewCell.swift */; };
 		B4E9805E1E6291680045843C /* MDBSocials-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = B4E9805D1E6291680045843C /* MDBSocials-Bridging-Header.h */; };
 		B4E980601E6552140045843C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9805F1E6552140045843C /* Constants.swift */; };
+		B4E980621E67B3B10045843C /* MDBSocialsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E980611E67B3B10045843C /* MDBSocialsUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		B4E9804D1E6287100045843C /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		B4E9805D1E6291680045843C /* MDBSocials-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MDBSocials-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4E9805F1E6552140045843C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B4E980611E67B3B10045843C /* MDBSocialsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDBSocialsUtils.swift; sourceTree = "<group>"; };
 		BB669FE9C2436B8FFA4EC814 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
 		BF4906DC8A31FAA2768DB81C /* Pods_MDBSocialsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDBSocialsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFEE2C3E727EE09DEF41060 /* Pods-MDBSocialsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsTests/Pods-MDBSocialsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				B4E980051E6041E80045843C /* Post.swift */,
 				B4E980071E6042B40045843C /* User.swift */,
 				B4E9805F1E6552140045843C /* Constants.swift */,
+				B4E980611E67B3B10045843C /* MDBSocialsUtils.swift */,
 				B4B1F9811E5C288F0047342D /* Main.storyboard */,
 				B4B1F9861E5C288F0047342D /* LaunchScreen.storyboard */,
 				B4B1F9841E5C288F0047342D /* Assets.xcassets */,
@@ -499,6 +502,7 @@
 				B4E9804E1E6287100045843C /* ListTableViewCell.swift in Sources */,
 				B4E9805E1E6291680045843C /* MDBSocials-Bridging-Header.h in Sources */,
 				B4E9804C1E6284630045843C /* ListViewController.swift in Sources */,
+				B4E980621E67B3B10045843C /* MDBSocialsUtils.swift in Sources */,
 				B4E9800A1E604BAD0045843C /* NewSocialViewController.swift in Sources */,
 				B43081991E5D87C3003DC851 /* TextField.swift in Sources */,
 				B4E9800C1E61CEEE0045843C /* DetailViewController.swift in Sources */,

@@ -57,9 +57,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell") as! ListTableViewCell
-        for subview in cell.contentView.subviews {
-            subview.removeFromSuperview() //remove stuff from cell before initializing
-        }
+        MDBSocialsUtils.clearCell(cell: cell)
         cell.awakeFromNib() //initialize cell
         let currentId = names[indexPath.row]
         User.generateUserModel(withId: currentId, withBlock: { user in

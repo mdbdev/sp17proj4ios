@@ -11,6 +11,7 @@ import UIKit
 
 struct Constants {
     
+    static let greenColor = UIColor(red: 0, green: 162/255, blue: 0, alpha: 0.6)
     static let purpleColor = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
     static let textFieldHeight: CGFloat = 40
     static let signInBorderWidth: CGFloat = 0.6
