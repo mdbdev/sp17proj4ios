@@ -1,5 +1,5 @@
 //
-//  FeedTableViewCell.swift
+//  FeedTableViewswift
 //  MDBSocials
 //
 //  Created by Boris Yue on 2/22/17.
@@ -33,6 +33,8 @@ class FeedTableViewCell: UITableViewCell {
         setUpEventNameText()
         setUpMemberNameText()
         setUpDateText()
+        addInterestedIcon()
+        addInterestedLabel()
         addInterestedButton()
 
     }
@@ -61,6 +63,18 @@ class FeedTableViewCell: UITableViewCell {
         date = UILabel(frame: CGRect(x: 0, y: author.frame.minY + 18, width: 50, height: 50))
         date.font = UIFont.boldSystemFont(ofSize: 12)
         contentView.addSubview(date)
+    }
+    
+    func addInterestedIcon() {
+        interestsImage = UIImageView()
+        interestsImage.image = #imageLiteral(resourceName: "people")
+        contentView.addSubview(interestsImage)
+    }
+    
+    func addInterestedLabel() {
+        interests = UILabel()
+        interests.font = UIFont.systemFont(ofSize: 12)
+        contentView.addSubview(interests)
     }
     
     func addInterestedButton() {

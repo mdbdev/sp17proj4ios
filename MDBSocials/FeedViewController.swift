@@ -9,7 +9,12 @@
 import UIKit
 import Firebase
 import DZNEmptyDataSet
-// IMPLEMENT LIVE UPDATES!!!
+
+enum GoingStatus {
+    case interested
+    case notResponded
+}
+
 class FeedViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     var tableView: UITableView!
@@ -130,22 +135,23 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         cell.date.text = "Happening on " + currentPost.date!
         cell.date.sizeToFit()
         cell.date.frame.origin.x = cell.eventName.frame.minX - cell.date.frame.width / 2 + cell.eventName.frame.width / 2
-        
-        currentPost.getInterestedUsers(withBlock: { count in
-            cell.interestsImage = UIImageView(frame: CGRect(x: 0, y: cell.date.frame.minY + 18, width: 20, height: 20))
-            cell.interestsImage.image = #imageLiteral(resourceName: "people")
-            cell.contentView.addSubview(cell.interestsImage)
-            cell.interests = UILabel(frame: CGRect(x: 0, y: cell.date.frame.minY + 20, width: 50, height: 50))
-            cell.interests.font = UIFont.systemFont(ofSize: 12)
-            cell.contentView.addSubview(cell.interests)
-            cell.interests.text = "\(count)" + " Interested"
-            cell.interests.sizeToFit()
-            cell.interests.frame.origin.x = cell.eventName.frame.minX - cell.interests.frame.width / 2 + cell.eventName.frame.width / 2 + cell.interestsImage.frame.width / 2 - 35//move it to the right a bit to center with icon
-            cell.interestsImage.frame.origin.x = cell.interests.frame.minX - cell.interestsImage.frame.width - 3
-            cell.interestedButton.frame = CGRect(x: cell.interests.frame.maxX + 8, y: cell.date.frame.minY + 20, width: 70, height: cell.interests.frame.height )
-
-        })
+        addPostObserver(forPost: currentPost, updateCell: cell)
         return cell
+    }
+    
+    func addPostObserver(forPost: Post, updateCell: FeedTableViewCell) { //update num interested when button clicked
+        self.postsRef.child("\(forPost.id!)").observe(.value, with: { snapshot in
+            let value = snapshot.value as? NSDictionary
+            let idArray = value?["interestedUsers"] as? [String] ?? []
+            DispatchQueue.main.async {
+                updateCell.interests.text = "\(idArray.count)" + " Interested"
+                updateCell.interests.sizeToFit()
+                updateCell.interests.frame.origin.x = updateCell.eventName.frame.minX - updateCell.interests.frame.width / 2 + updateCell.eventName.frame.width / 2 + updateCell.interestsImage.frame.width / 2 - 35//move it to the right a bit to center with icon
+                updateCell.interests.frame.origin.y = updateCell.date.frame.minY + 20
+                updateCell.interestsImage.frame.origin.x = updateCell.interests.frame.minX - updateCell.interestsImage.frame.width - 3
+                updateCell.interestedButton.frame = CGRect(x: updateCell.interests.frame.maxX + 8, y: updateCell.date.frame.minY + 20, width: 70, height: updateCell.interests.frame.height )
+            }
+        })
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -9,11 +9,6 @@
 import UIKit
 import Firebase
 
-enum GoingStatus {
-    case interested
-    case notResponded
-}
-
 class DetailViewController: UIViewController {
 
     var post: Post!
@@ -26,6 +21,7 @@ class DetailViewController: UIViewController {
     var descriptionTitle: UILabel!
     var numInterestedButton: UIButton!
     var interestedButton: UIButton!
+    let postsRef = FIRDatabase.database().reference().child("Posts")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +99,7 @@ class DetailViewController: UIViewController {
         interestedButton.layer.masksToBounds = true
         interestedButton.addTarget(self, action: #selector(interestedClicked), for: .touchUpInside)
         interestedButton.isSelected = false
+        addPostsObserver()
         view.addSubview(interestedButton)
     }
     
@@ -119,14 +116,22 @@ class DetailViewController: UIViewController {
     
     func interestedClicked() {
         if !interestedButton.isSelected {
-            interestedButton.setTitle("Not Interested", for: .normal)
             post.addInterestedUser(withId: currentUser.id!)
         } else {
-            interestedButton.setTitle("Interested", for: .normal)
             post.removeInterestedUser(withId: currentUser.id!)
         }
-        numInterestedButton.setTitle("\(post.interestedUsers.count)" + " people interested", for: .normal) //change number
+        interestedButton.setTitle("Not Interested", for: .selected)
         interestedButton.isSelected = !interestedButton.isSelected
+    }
+    
+    func addPostsObserver() { //update num interested
+        postsRef.child("\(post.id!)").observe(.value, with: { snapshot in
+            let value = snapshot.value as? NSDictionary
+            let idArray = value?["interestedUsers"] as? [String] ?? []
+            DispatchQueue.main.async {
+                self.numInterestedButton.setTitle("\(idArray.count)" + " people interested", for: .normal) //change number
+            }
+        })
     }
     
     func setUpDescriptionTitle() {
