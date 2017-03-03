@@ -16,16 +16,13 @@ class InterestedPeopleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupProfileImage()
-        userName = UILabel(frame: CGRect(x: 25, y: 0, width: 50, height: 50))
+        userName = UILabel(frame: CGRect(x: 45, y: 0, width: 50, height: 50))
+        userImage = UIImageView(frame: CGRect(x: 5, y: 2, width: 50, height: 50))
+
+        contentView.addSubview(userImage)
         contentView.addSubview(userName)
     }
-    func setupProfileImage() {
-        userImage = UIImageView(frame: CGRect(x: 10, y: 10, width: 0.50 * self.frame.height, height: 0.50 * self.frame.height))
-        userImage.clipsToBounds = true
-        userImage.contentMode = .scaleAspectFit
-        addSubview(userImage)
-    }
+   
 
     
 }

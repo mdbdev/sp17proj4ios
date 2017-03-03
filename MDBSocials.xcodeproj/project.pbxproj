@@ -12,6 +12,10 @@
 		4C2D8529E3DE39F9CE4E5C35 /* Pods_MDBSocials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE26AC00A3249AFB8C92FF21 /* Pods_MDBSocials.framework */; };
 		E11C5DAD1E62880300F09B8E /* InterestedPeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C5DAC1E62880300F09B8E /* InterestedPeopleTableViewCell.swift */; };
 		E11C5DAF1E62881400F09B8E /* InterestedPeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11C5DAE1E62881400F09B8E /* InterestedPeopleTableViewController.swift */; };
+		E159D4431E67F9DF0067AEA4 /* nutellaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E159D4411E67F8700067AEA4 /* nutellaBold.ttf */; };
+		E159D4441E67F9E20067AEA4 /* goodfish.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E159D4421E67F9CA0067AEA4 /* goodfish.ttf */; };
+		E159D4461E694B1E0067AEA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159D4451E694B1E0067AEA4 /* Constants.swift */; };
+		E159D4481E694BE40067AEA4 /* MDBSocialsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159D4471E694BE40067AEA4 /* MDBSocialsUtils.swift */; };
 		E19E4E861E5E5AEA006BE76C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E19E4E851E5E5AEA006BE76C /* GoogleService-Info.plist */; };
 		E19F95FE1E5D0D3800941C78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F95FD1E5D0D3800941C78 /* AppDelegate.swift */; };
 		E19F96031E5D0D3800941C78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19F96011E5D0D3800941C78 /* Main.storyboard */; };
@@ -58,6 +62,10 @@
 		CDE9C10F765F98E6FF340C49 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
 		E11C5DAC1E62880300F09B8E /* InterestedPeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestedPeopleTableViewCell.swift; sourceTree = "<group>"; };
 		E11C5DAE1E62881400F09B8E /* InterestedPeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestedPeopleTableViewController.swift; sourceTree = "<group>"; };
+		E159D4411E67F8700067AEA4 /* nutellaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = nutellaBold.ttf; path = ../../../../Downloads/nutellaBold.ttf; sourceTree = "<group>"; };
+		E159D4421E67F9CA0067AEA4 /* goodfish.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = goodfish.ttf; path = ../../../../Downloads/goodfish/goodfish.ttf; sourceTree = "<group>"; };
+		E159D4451E694B1E0067AEA4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E159D4471E694BE40067AEA4 /* MDBSocialsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDBSocialsUtils.swift; sourceTree = "<group>"; };
 		E19E4E851E5E5AEA006BE76C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E19F95FA1E5D0D3800941C78 /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19F95FD1E5D0D3800941C78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,11 +167,15 @@
 		E19F95FC1E5D0D3800941C78 /* MDBSocials */ = {
 			isa = PBXGroup;
 			children = (
+				E159D4411E67F8700067AEA4 /* nutellaBold.ttf */,
+				E159D4421E67F9CA0067AEA4 /* goodfish.ttf */,
 				E19F95FD1E5D0D3800941C78 /* AppDelegate.swift */,
 				E19F96301E5D299C00941C78 /* LoginViewController.swift */,
 				E19F96321E5D29B100941C78 /* SignupViewController.swift */,
+				E159D4451E694B1E0067AEA4 /* Constants.swift */,
 				E11C5DAE1E62881400F09B8E /* InterestedPeopleTableViewController.swift */,
 				E11C5DAC1E62880300F09B8E /* InterestedPeopleTableViewCell.swift */,
+				E159D4471E694BE40067AEA4 /* MDBSocialsUtils.swift */,
 				E19F96341E5D29BF00941C78 /* FeedViewController.swift */,
 				E19F963C1E5D3A9400941C78 /* SocialCollectionViewCell.swift */,
 				E19F96361E5D29CF00941C78 /* DetailViewController.swift */,
@@ -315,9 +327,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E19F960B1E5D0D3900941C78 /* LaunchScreen.storyboard in Resources */,
+				E159D4431E67F9DF0067AEA4 /* nutellaBold.ttf in Resources */,
 				E19E4E861E5E5AEA006BE76C /* GoogleService-Info.plist in Resources */,
 				E19F96081E5D0D3900941C78 /* Assets.xcassets in Resources */,
 				E19F96031E5D0D3800941C78 /* Main.storyboard in Resources */,
+				E159D4441E67F9E20067AEA4 /* goodfish.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,9 +498,11 @@
 				E19F96311E5D299C00941C78 /* LoginViewController.swift in Sources */,
 				E19F96331E5D29B100941C78 /* SignupViewController.swift in Sources */,
 				E11C5DAD1E62880300F09B8E /* InterestedPeopleTableViewCell.swift in Sources */,
+				E159D4481E694BE40067AEA4 /* MDBSocialsUtils.swift in Sources */,
 				E19F963D1E5D3A9400941C78 /* SocialCollectionViewCell.swift in Sources */,
 				E19F95FE1E5D0D3800941C78 /* AppDelegate.swift in Sources */,
 				E19F96391E5D29DE00941C78 /* NewSocialViewController.swift in Sources */,
+				E159D4461E694B1E0067AEA4 /* Constants.swift in Sources */,
 				E11C5DAF1E62881400F09B8E /* InterestedPeopleTableViewController.swift in Sources */,
 				E19F96351E5D29BF00941C78 /* FeedViewController.swift in Sources */,
 				E19F96061E5D0D3900941C78 /* MDBSocials.xcdatamodeld in Sources */,

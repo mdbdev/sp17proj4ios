@@ -21,7 +21,7 @@ class Social {
     var id: String?
     var image: UIImage?
     var interestedNumber = 0
-    var interestedPeople2 : [String] = []
+    var interestedPeople2 : [User] = []
    
     
     init(id: String, postDict: [String:Any]?) {
@@ -48,7 +48,7 @@ class Social {
             if let poster = postDict!["poster"] as? String {
                 self.poster = poster
             }
-            if let interestedPpl = postDict!["interestedPeople"] as? [String] {
+            if let interestedPpl = postDict!["interestedPeople"] as? [User] {
                 self.interestedPeople2 = interestedPpl
             }
         }

@@ -14,77 +14,166 @@ class NewSocialViewController: UIViewController {
     var eventNameTextField: UITextField!
     var descriptionTextField: UITextField!
     var dateTextField: UITextField!
- 
+    var cameraImage: UIImageView!
+    var cameraImage2: UIImageView!
+    var takeFromCamera: UIButton!
     var createSocial: UIButton!
     var goBackButton: UIButton!
     var selectFromLibraryButton: UIButton!
     let picker = UIImagePickerController()
     var newPostView: UITextField!
-    var newPostButton: UIButton!
+    var postButton: UIButton!
     var postCollectionView: UICollectionView!
     var posts: [Social] = []
     var auth = FIRAuth.auth()
     var users: [User] = []
     var currentUser: User!
+    var textBackground: UIImageView!
+    var noOne: [User] = []
     var newEventName: UITextField!
     var eventImageView: UIImageView!
     var interestedUsers: [String] = []
+    var lineImage: UIImageView!
     var postsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Posts")
     
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        setupEventImageView()
-        picker.delegate = self
-        self.fetchUser() {
-            print("done")
+        setupBackground()
+        fetchUser {
+            self.setupEventImageView()
+            self.setupTextBackground()
+            self.picker.delegate = self
+            self.setupTextFields()
+            self.setupButtons()
         }
-        // Do any additional setup after loading the view.
-        setupTextFields()
-      
-        setupButtons()
-     
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-       func setupTextFields() {
-        // sets up name of event, description, and date text fields
+    
+    func setupBackground() {
         
-        eventNameTextField = UITextField(frame: CGRect(x: 10, y: 0.6 * UIScreen.main.bounds.height - 40, width: UIScreen.main.bounds.width - 20, height: 30))
+        //sets up gradient background
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "turquoiseBackground")?.draw(in: self.view.bounds)
+        
+        if let image: UIImage = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        } else {
+            UIGraphicsEndImageContext()
+            debugPrint("Image not available")
+        }
+        
+    }
+    
+    func setupEventImageView() {
+        
+        eventImageView = UIImageView(frame: CGRect(x: 50, y: 90, width: UIScreen.main.bounds.width - 100, height: UIScreen.main.bounds.width - 100))
+        eventImageView.layer.borderColor = UIColor.gray.cgColor
+        eventImageView.image = UIImage(named: "questionMark.jpg")
+        
+        cameraImage = UIImageView(frame: CGRect(x: view.frame.width/2 - 28, y: view.frame.height/2 - 100, width: 60, height: 60))
+        cameraImage2 = UIImageView(frame: CGRect(x: view.frame.width/2 - 28, y: view.frame.height/2 - 250, width: 60, height: 60))
+        cameraImage.image = UIImage(named: "camera.jpg")
+        cameraImage2.image = UIImage(named: "camera.jpg")
+
+        lineImage = UIImageView(frame: CGRect(x: 38, y: 20, width: 337, height: 460))
+        lineImage.image = UIImage(named: "line.png")
+        
+        takeFromCamera = UIButton(frame: CGRect(x: 53, y: 127, width: 305, height: 170))
+        takeFromCamera.setTitle("Take your event photo", for: .normal)
+        takeFromCamera.titleLabel?.numberOfLines = 2
+        takeFromCamera.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 25)
+        takeFromCamera.setTitleColor(UIColor.white, for: .normal)
+        takeFromCamera.titleLabel?.textAlignment = .center
+        takeFromCamera.addTarget(self, action: #selector(takeImage), for: .touchUpInside)
+        
+        selectFromLibraryButton = UIButton(frame: CGRect(x: 53, y: 269, width: 305, height: 170))
+        selectFromLibraryButton.setTitle("Choose your event photo", for: .normal)
+        selectFromLibraryButton.titleLabel?.numberOfLines = 2
+        selectFromLibraryButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 25)
+        selectFromLibraryButton.setTitleColor(UIColor.white, for: .normal)
+        selectFromLibraryButton.titleLabel?.textAlignment = .center
+        selectFromLibraryButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
+        
+        view.addSubview(eventImageView)
+        view.addSubview(takeFromCamera)
+        view.addSubview(lineImage)
+        view.addSubview(selectFromLibraryButton)
+        view.addSubview(cameraImage)
+        view.addSubview(cameraImage2)
+        view.bringSubview(toFront: selectFromLibraryButton)
+        
+    }
+
+    func setupTextBackground() {
+        
+        textBackground = UIImageView(frame: CGRect(x: 35, y: 420, width: 340, height: 300))
+        textBackground.backgroundColor = UIColor.white
+        textBackground.layer.cornerRadius = 30
+        textBackground.clipsToBounds = true;
+        
+        view.addSubview(textBackground)
+    }
+    
+    func setupTextFields() {
+        
+        // sets up event name, description, and date text fields
+        eventNameTextField = UITextField(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height, width: UIScreen.main.bounds.width - 110, height: 30))
         eventNameTextField.adjustsFontSizeToFitWidth = true
-        eventNameTextField.placeholder = "Event Name"
-        eventNameTextField.layoutIfNeeded()
-        eventNameTextField.layer.borderColor = UIColor.lightGray.cgColor
+        eventNameTextField.placeholder = " Event name"
+        eventNameTextField.layer.borderColor = Constants.aqua.cgColor
         eventNameTextField.layer.borderWidth = 1.0
         eventNameTextField.layer.masksToBounds = true
         eventNameTextField.textColor = UIColor.black
-        self.view.addSubview(eventNameTextField)
         
-        
-        descriptionTextField = UITextField(frame: CGRect(x: 10, y: 0.6 * UIScreen.main.bounds.height, width: UIScreen.main.bounds.width - 20, height: 30))
+        descriptionTextField = UITextField(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 42, width: UIScreen.main.bounds.width - 110, height: 30))
         descriptionTextField.adjustsFontSizeToFitWidth = true
-        descriptionTextField.placeholder = "Event Description"
-        descriptionTextField.layer.borderColor = UIColor.lightGray.cgColor
+        descriptionTextField.placeholder = " Date"
+        descriptionTextField.layer.borderColor = Constants.aqua.cgColor
         descriptionTextField.layer.borderWidth = 1.0
         descriptionTextField.layer.masksToBounds = true
         descriptionTextField.textColor = UIColor.black
-        descriptionTextField.isSecureTextEntry = true
-        self.view.addSubview(descriptionTextField)
         
-        dateTextField = UITextField(frame: CGRect(x: 10, y: 0.6 * UIScreen.main.bounds.height + 40, width: UIScreen.main.bounds.width - 20, height: 30))
+        dateTextField = UITextField(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 86, width: UIScreen.main.bounds.width - 110, height: 30))
         dateTextField.adjustsFontSizeToFitWidth = true
-        dateTextField.placeholder = "Date"
-        dateTextField.layer.borderColor = UIColor.lightGray.cgColor
+        dateTextField.placeholder = " Description"
+        dateTextField.layer.borderColor = Constants.aqua.cgColor
         dateTextField.layer.borderWidth = 1.0
         dateTextField.layer.masksToBounds = true
         dateTextField.textColor = UIColor.black
+        
+        self.view.addSubview(eventNameTextField)
+        self.view.addSubview(descriptionTextField)
         self.view.addSubview(dateTextField)
-       
     }
+
+    func setupButtons() {
+        
+        postButton = UIButton(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 170, width: UIScreen.main.bounds.width - 110, height: 35))
+        postButton.setTitle("Post", for: .normal)
+        postButton.setTitleColor(UIColor.white, for: .normal)
+        postButton.backgroundColor = Constants.aqua
+        postButton.addTarget(self, action: #selector(postButtonClicked), for: .touchUpInside)
+        self.view.addSubview(postButton)
+        
+        goBackButton = UIButton(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 217, width: UIScreen.main.bounds.width - 110, height: 35))
+        goBackButton.layoutIfNeeded()
+        goBackButton.setTitle("Cancel", for: .normal)
+        goBackButton.setTitleColor(UIColor.white, for: .normal)
+        goBackButton.backgroundColor = Constants.aqua
+        goBackButton.addTarget(self, action: #selector(goBackButtonClicked), for: .touchUpInside)
+        self.view.addSubview(goBackButton)
+        
+    }
+
     func fetchUser(withBlock: @escaping () -> ()) {
         //TODO: Implement a method to fetch posts with Firebase!
         let ref = FIRDatabase.database().reference()
@@ -95,52 +184,36 @@ class NewSocialViewController: UIViewController {
             
         })
     }
-    func setupEventImageView() {
-        eventImageView = UIImageView(frame: CGRect(x: 20, y: 20, width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.width - 40))
-        selectFromLibraryButton = UIButton(frame: eventImageView.frame)
-        selectFromLibraryButton.setTitle("Pick Image From Library", for: .normal)
-        selectFromLibraryButton.setTitleColor(UIColor.blue, for: .normal)
-        selectFromLibraryButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
-        view.addSubview(eventImageView)
-        view.addSubview(selectFromLibraryButton)
-        view.bringSubview(toFront: selectFromLibraryButton)
-        
-    }
    
-    func createNewPost(sender: UIButton!) {
-         let eventImageData = UIImageJPEGRepresentation(eventImageView.image!, 0.9)
-
-         let nameOfEvent = eventNameTextField.text!
-         self.eventNameTextField.text = ""
-         let eventDescription = descriptionTextField.text!
-         self.descriptionTextField.text = ""
-         let eventDate = dateTextField.text!
-         self.dateTextField.text = ""
-         let key2 = self.postsRef.childByAutoId().key
-
+    func postButtonClicked(sender: UIButton!) {
         
+        let eventImageData = UIImageJPEGRepresentation(eventImageView.image!, 0.9)
+        
+        let nameOfEvent = eventNameTextField.text!
+        self.eventNameTextField.text = ""
+        let eventDescription = descriptionTextField.text!
+        self.descriptionTextField.text = ""
+        let eventDate = dateTextField.text!
+        self.dateTextField.text = ""
+        let key2 = self.postsRef.childByAutoId().key
         let storage = FIRStorage.storage().reference().child("eventpics/\(key2)")
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"
         storage.put(eventImageData!, metadata: metadata).observe(.success) { (snapshot) in
             let url = snapshot.metadata?.downloadURL()?.absoluteString
-            //ref.setValue(["name": name, "email": email, "imageUrl": url, "userName" : userName])
-            //self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
-          
-            let newPost = ["eventName": nameOfEvent, "test": "where are you", "poster": self.currentUser?.name as Any, "userImageUrl": self.currentUser?.imageUrl as Any, "interestedPeople": self.interestedUsers, "posterId": self.currentUser?.id! as Any, "description": eventDescription, "date": eventDate, "eventImageUrl": url!, "eventId": key2] as [String : Any]
+            let newPost = ["eventName": nameOfEvent, "poster": self.currentUser?.name as Any, "interestedPeople": self.noOne, "posterId": self.currentUser?.id! as Any, "description": eventDescription, "date": eventDate, "eventImageUrl": url!, "eventId": key2] as [String : Any]
             let key = self.postsRef.childByAutoId().key
             let childUpdates = ["/\(key)/": newPost]
             self.postsRef.updateChildValues(childUpdates)
-           
         }
-        
-    
-        
-            
+        self.performSegue(withIdentifier: "backToFeed", sender: self)
 
-                    
-        
     }
+    
+    func goBackButtonClicked() {
+        self.performSegue(withIdentifier: "backToFeed", sender: self)
+    }
+    
     func fetchPosts(withBlock: @escaping () -> ()) {
         //appends each initialized post (w/ key and postDict) into posts array to be displayed
         let ref = FIRDatabase.database().reference()
@@ -154,7 +227,6 @@ class NewSocialViewController: UIViewController {
         })
     }
    
-
     func pickImage(sender: UIButton!) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
@@ -162,53 +234,21 @@ class NewSocialViewController: UIViewController {
         present(picker, animated: true, completion: nil)
     }
     
+    func takeImage(sender: UIButton!) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            var imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
     
-    func setupNewPostView() {
-        newPostView = UITextField(frame: CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width - 20, height: 0.3 * UIScreen.main.bounds.height))
-        print("i reach here")
-        newPostView.layoutIfNeeded()
-        newPostView.layer.shadowRadius = 2.0
-        newPostView.layer.masksToBounds = true
-        newPostView.placeholder = "Write a new post..."
-        view.addSubview(newPostView)
-    }
-    
-   
-    
-    func setupButtons() {
-        
-        createSocial = UIButton(frame: CGRect(x: 10, y: 0.8 * UIScreen.main.bounds.height, width: UIScreen.main.bounds.width - 20, height: 30))
-        createSocial.layoutIfNeeded()
-        createSocial.setTitle("Create Social", for: .normal)
-        createSocial.setTitleColor(UIColor.blue, for: .normal)
-        createSocial.layer.borderWidth = 2.0
-        createSocial.layer.cornerRadius = 3.0
-        createSocial.layer.borderColor = UIColor.blue.cgColor
-        createSocial.layer.masksToBounds = true
-        createSocial.addTarget(self, action: #selector(createNewPost), for: .touchUpInside)
-        self.view.addSubview(createSocial)
-        
-       
-    }
-    
-    func goBackButtonClicked() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 

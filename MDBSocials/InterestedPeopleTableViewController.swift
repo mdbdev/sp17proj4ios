@@ -14,14 +14,17 @@ class InterestedPeopleViewController: UIViewController {
     static var interestedUsers: [String] = []
     var currentUser: User!
     var currentUser2: User!
+    static var interestedNames: [String] = []
+    static var interestedPics: [String] = []
     var postsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Users")
-
+ 
+    
     var tableView: UITableView!
         override func viewDidLoad() {
         super.viewDidLoad()
    
         setUpTableView()
-       
+        
     }
     
     func setUpTableView() {
@@ -29,7 +32,8 @@ class InterestedPeopleViewController: UIViewController {
         tableView.register(InterestedPeopleTableViewCell.self, forCellReuseIdentifier: "userCell")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 50
+        tableView.rowHeight = 70
+        
         view.addSubview(tableView)
 
     }
@@ -39,12 +43,25 @@ class InterestedPeopleViewController: UIViewController {
 extension InterestedPeopleViewController: UITableViewDataSource, UITableViewDelegate{
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            print("what is the number o users")
-            print(InterestedPeopleViewController.interestedUsers.count)
             return InterestedPeopleViewController.interestedUsers.count
             
         }
-        
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell1 = cell as! InterestedPeopleTableViewCell
+        cell1.userName.text = InterestedPeopleViewController.interestedNames[indexPath.row]
+        cell1.userName.sizeToFit()
+        cell1.userName.frame.origin.y = tableView.rowHeight / 2 - 5
+        cell1.userName.frame.origin.x = cell1.userImage.frame.maxX + 10
+        let user = User()
+        user.imageUrl = InterestedPeopleViewController.interestedPics[indexPath.row]
+        user.id = InterestedPeopleViewController.interestedUsers[indexPath.row]
+        user.getProfilePic {
+            cell1.userImage.image = user.image
+        }
+       
+            
+    }
+    
         // Setting up cells
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! InterestedPeopleTableViewCell
@@ -52,18 +69,7 @@ extension InterestedPeopleViewController: UITableViewDataSource, UITableViewDele
                 subview.removeFromSuperview() //remove stuff from cell before initializing
             }
             userCell.awakeFromNib() //initialize cell
-           /* let currentUser = InterestedPeopleViewController.interestedUsers[indexPath.row]
-            currentUser2 = postsRef.
-            currentUser.getProfilePic {
-                userCell.userImage.image = currentUser.image
- */
             
-            //setting up text
-            userCell.userName.text = currentUser.name
-            userCell.userName.sizeToFit()
-            userCell.userName.frame.origin.y = tableView.rowHeight / 2 - 5
-            userCell.userName.frame.origin.x = userCell.userImage.frame.maxX + 10
-          
             return userCell
         }
 }

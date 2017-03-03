@@ -31,8 +31,13 @@ class User {
             
         }
     }
+    init() {
+        self.name = ""
+        
+    }
     func getProfilePic(withBlock: @escaping () -> ()) {
         let ref = FIRStorage.storage().reference().child("/profilepics/\(id!)")
+        print(id!)
         ref.data(withMaxSize: 1 * 2048 * 2048) { data, error in
             if let error = error {
                 print(error)

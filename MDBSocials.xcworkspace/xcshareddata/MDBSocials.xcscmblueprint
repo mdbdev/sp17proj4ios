@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DBBAD5B5532376B804259A2FAFA90F6E32CFD3CA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DBBAD5B5532376B804259A2FAFA90F6E32CFD3CA" : 9223372036854775807,
+    "D674BFF7AE7CC55D23D57A8FD820CA8B614B6CE1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C0DD1644-D92D-47E8-9AE3-4A8B1DA85AD2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DBBAD5B5532376B804259A2FAFA90F6E32CFD3CA" : "MDBSocials\/",
+    "D674BFF7AE7CC55D23D57A8FD820CA8B614B6CE1" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MDBSocials",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MDBSocials.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MobileDevelopersOfBerkeley\/sp17proj3ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D674BFF7AE7CC55D23D57A8FD820CA8B614B6CE1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/MobileDevelopersOfBerkeley\/sp17proj3ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DBBAD5B5532376B804259A2FAFA90F6E32CFD3CA"
+    }
+  ]
+}

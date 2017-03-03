@@ -12,46 +12,50 @@ class SocialCollectionViewCell: UICollectionViewCell {
     var eventImage: UIImageView!
     var posterText: UILabel!
     var eventNameText: UITextView!
-    var likeButton: UIButton!
-    
+    var interestedButton: UIButton!
+    static var num: Int!
     override func awakeFromNib() {
+        
         super.awakeFromNib()
-        self.backgroundColor = UIColor.white
+        SocialCollectionViewCell.num = 0
         setupEventImage()
         setupPosterText()
         setupPostText()
-        setupLikeButton()
+        setupInterestedButton()
     }
     
     func setupEventImage() {
-        eventImage = UIImageView(frame: CGRect(x: 10, y: 10, width: 0.50 * self.frame.height, height: 0.50 * self.frame.height))
+        
+        eventImage = UIImageView(frame: CGRect(x: 10, y: 10, width: 0.50 * self.frame.height + 20, height: 0.8 * self.frame.height + 20))
         eventImage.clipsToBounds = true
         eventImage.contentMode = .scaleAspectFit
-        addSubview(eventImage)
+        contentView.addSubview(eventImage)
     }
     
     func setupPosterText() {
-        posterText = UILabel(frame: CGRect(x: eventImage.frame.maxX + 10, y: 10, width: self.frame.width, height: 30))
-        posterText.textColor = UIColor.black
-        posterText.font = UIFont.systemFont(ofSize: 24, weight: 2)
+        
+        posterText = UILabel(frame: CGRect(x: eventImage.frame.maxX + 19, y: 45, width: self.frame.width, height: 60))
+        posterText.textColor = UIColor.init(red: 0, green: 0.7, blue: 0.7, alpha: 1)
+        posterText.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
         posterText.adjustsFontForContentSizeCategory = true
-        addSubview(posterText)
+        contentView.addSubview(posterText)
     }
     
     func setupPostText() {
-        eventNameText = UITextView(frame: CGRect(x: eventImage.frame.maxX + 10, y: posterText.frame.maxY + 10, width: self.frame.width, height: 0.5 * self.frame.height - 40))
-        eventNameText.textColor = UIColor.black
+        eventNameText = UITextView(frame: CGRect(x: eventImage.frame.maxX + 18, y: posterText.frame.maxY - 87 , width: self.frame.width, height: 40))
+        eventNameText.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         eventNameText.adjustsFontForContentSizeCategory = true
         eventNameText.isEditable = false
-        addSubview(eventNameText)
+        contentView.addSubview(eventNameText)
         
     }
-    func setupLikeButton() {
-        likeButton = UIButton(frame: CGRect(x: 50, y: eventImage.frame.maxY + 10, width: 200, height: 30))
-        likeButton.setTitle("Interested", for: .normal)
-        likeButton.setTitle("Uninterested", for: .selected)
-        likeButton.setTitleColor(UIColor.blue, for: .normal)
-        addSubview(likeButton)
+    func setupInterestedButton() {
+        interestedButton = UIButton(frame: CGRect(x: eventImage.frame.maxX + 19, y: eventImage.frame.maxY - 39, width: 100, height: 30))
+        interestedButton.setTitle((String(SocialCollectionViewCell.num) + " interested"), for: .normal)
+        interestedButton.setTitle("Uninterested", for: .selected)
+        interestedButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 17)
+        interestedButton.setTitleColor(UIColor.black, for: .normal)
+        contentView.addSubview(interestedButton)
     }
     
 }

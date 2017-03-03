@@ -15,19 +15,23 @@ class SignUpViewController: UIViewController {
     var passwordTextField: UITextField!
     var nameTextField: UITextField!
     var userNameTextField: UITextField!
-    var profileImageView: UIImageView!
+    static var profileImageView: UIImageView!
     var signupButton: UIButton!
     var goBackButton: UIButton!
     var selectFromLibraryButton: UIButton!
+    var cameraImage: UIImageView!
+    var textBackground: UIImageView!
     let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
-        // Do any additional setup after loading the view.
+        setupBackground()
+        setupProfileImageView()
+        setupTextBackground()
         setupTextFields()
         setupButtons()
-        setupProfileImageView()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,16 +39,55 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupBackground() {
+        
+        //sets up gradient background
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "turquoiseBackground")?.draw(in: self.view.bounds)
+        
+        if let image: UIImage = UIGraphicsGetImageFromCurrentImageContext(){
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        } else {
+            UIGraphicsEndImageContext()
+            debugPrint("Image not available")
+        }
+        
+    }
+    
     func setupProfileImageView() {
-        profileImageView = UIImageView(frame: CGRect(x: 20, y: 20, width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.width - 40))
-        selectFromLibraryButton = UIButton(frame: profileImageView.frame)
-        selectFromLibraryButton.setTitle("Pick Image From Library", for: .normal)
-        selectFromLibraryButton.setTitleColor(UIColor.blue, for: .normal)
+        
+        SignUpViewController.profileImageView = UIImageView(frame: CGRect(x: 50, y: 60, width: UIScreen.main.bounds.width - 100, height: UIScreen.main.bounds.width - 100))
+        SignUpViewController.profileImageView.layer.borderColor = UIColor.gray.cgColor
+        SignUpViewController.profileImageView.image = UIImage(named: "anon.jpg")
+        
+        cameraImage = UIImageView(frame: CGRect(x: view.frame.width/2 - 40, y: view.frame.height/2 - 240, width: 80, height: 80))
+        cameraImage.image = UIImage(named: "camera.jpg")
+       
+        selectFromLibraryButton = MDBSocialsUtils.createButton(frame: CGRect(x: 55, y: 75, width: 305, height: 400))
+        selectFromLibraryButton.setTitle("Choose your profile photo", for: .normal)
+        selectFromLibraryButton.titleLabel?.numberOfLines = 2
+        selectFromLibraryButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 35)
+        selectFromLibraryButton.setTitleColor(UIColor.white, for: .normal)
+        selectFromLibraryButton.titleLabel?.textAlignment = .center
+       
         selectFromLibraryButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
-        view.addSubview(profileImageView)
+        
+        
+        view.addSubview(SignUpViewController.profileImageView)
         view.addSubview(selectFromLibraryButton)
+        view.addSubview(cameraImage)
         view.bringSubview(toFront: selectFromLibraryButton)
         
+    }
+    func setupTextBackground() {
+        
+        textBackground = UIImageView(frame: CGRect(x: 35, y: 390, width: 340, height: 300))
+        textBackground.backgroundColor = UIColor.white
+        textBackground.layer.cornerRadius = 30
+        textBackground.clipsToBounds = true;
+        
+        view.addSubview(textBackground)
     }
     
     func pickImage(sender: UIButton!) {
@@ -63,40 +106,39 @@ class SignUpViewController: UIViewController {
     func setupTextFields() {
         // sets up email, username, password, and full name text fields
         
-        emailTextField = UITextField(frame: CGRect(x: 10, y: 0.6 * UIScreen.main.bounds.height - 40, width: UIScreen.main.bounds.width - 20, height: 30))
+        emailTextField = UITextField(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height - 30, width: UIScreen.main.bounds.width - 110, height: 30))
         emailTextField.adjustsFontSizeToFitWidth = true
-        emailTextField.placeholder = "Email"
-        emailTextField.layoutIfNeeded()
-        emailTextField.layer.borderColor = UIColor.lightGray.cgColor
+        emailTextField.placeholder = " Email"
+        emailTextField.layer.borderColor = UIColor.init(red: 0, green: 0.9, blue: 0.9, alpha: 1).cgColor
         emailTextField.layer.borderWidth = 1.0
         emailTextField.layer.masksToBounds = true
         emailTextField.textColor = UIColor.black
         self.view.addSubview(emailTextField)
         
         
-        passwordTextField = UITextField(frame: CGRect(x: 10, y: 0.6 * UIScreen.main.bounds.height, width: UIScreen.main.bounds.width - 20, height: 30))
+        passwordTextField = UITextField(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 12, width: UIScreen.main.bounds.width - 110, height: 30))
         passwordTextField.adjustsFontSizeToFitWidth = true
-        passwordTextField.placeholder = "Password"
-        passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
+        passwordTextField.placeholder = " Password"
+        passwordTextField.layer.borderColor = Constants.aqua.cgColor
         passwordTextField.layer.borderWidth = 1.0
         passwordTextField.layer.masksToBounds = true
         passwordTextField.textColor = UIColor.black
         passwordTextField.isSecureTextEntry = true
         self.view.addSubview(passwordTextField)
         
-        nameTextField = UITextField(frame: CGRect(x: 10, y: 0.6 * UIScreen.main.bounds.height + 40, width: UIScreen.main.bounds.width - 20, height: 30))
+        nameTextField = UITextField(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 54, width: UIScreen.main.bounds.width - 110, height: 30))
         nameTextField.adjustsFontSizeToFitWidth = true
-        nameTextField.placeholder = "Name"
-        nameTextField.layer.borderColor = UIColor.lightGray.cgColor
+        nameTextField.placeholder = " Name"
+        nameTextField.layer.borderColor = Constants.aqua.cgColor
         nameTextField.layer.borderWidth = 1.0
         nameTextField.layer.masksToBounds = true
         nameTextField.textColor = UIColor.black
         self.view.addSubview(nameTextField)
         
-        userNameTextField = UITextField(frame: CGRect(x: 10, y: 0.6 * UIScreen.main.bounds.height + 80, width: UIScreen.main.bounds.width - 20, height: 30))
+        userNameTextField = UITextField(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 96, width: UIScreen.main.bounds.width - 110, height: 30))
         userNameTextField.adjustsFontSizeToFitWidth = true
-        userNameTextField.placeholder = "Username"
-        userNameTextField.layer.borderColor = UIColor.lightGray.cgColor
+        userNameTextField.placeholder = " Username"
+        userNameTextField.layer.borderColor = Constants.aqua.cgColor
         userNameTextField.layer.borderWidth = 1.0
         userNameTextField.layer.masksToBounds = true
         userNameTextField.textColor = UIColor.black
@@ -105,25 +147,18 @@ class SignUpViewController: UIViewController {
     
     func setupButtons() {
         
-        signupButton = UIButton(frame: CGRect(x: 10, y: 0.8 * UIScreen.main.bounds.height, width: UIScreen.main.bounds.width - 20, height: 30))
-        signupButton.layoutIfNeeded()
-        signupButton.setTitle("Sign Up", for: .normal)
-        signupButton.setTitleColor(UIColor.blue, for: .normal)
-        signupButton.layer.borderWidth = 2.0
-        signupButton.layer.cornerRadius = 3.0
-        signupButton.layer.borderColor = UIColor.blue.cgColor
-        signupButton.layer.masksToBounds = true
+        signupButton = UIButton(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 140, width: UIScreen.main.bounds.width - 110, height: 35))
+        signupButton.setTitle("Sign up!", for: .normal)
+        signupButton.setTitleColor(UIColor.white, for: .normal)
+        signupButton.backgroundColor = Constants.aqua
         signupButton.addTarget(self, action: #selector(signupButtonClicked), for: .touchUpInside)
         self.view.addSubview(signupButton)
         
-        goBackButton = UIButton(frame: CGRect(x: 10, y: 0.8 * UIScreen.main.bounds.height + 40, width: UIScreen.main.bounds.width - 20, height: 30))
+        goBackButton = UIButton(frame: CGRect(x: 52, y: 0.6 * UIScreen.main.bounds.height + 187, width: UIScreen.main.bounds.width - 110, height: 35))
         goBackButton.layoutIfNeeded()
-        goBackButton.setTitle("Go Back", for: .normal)
-        goBackButton.setTitleColor(UIColor.blue, for: .normal)
-        goBackButton.layer.borderWidth = 2.0
-        goBackButton.layer.cornerRadius = 3.0
-        goBackButton.layer.borderColor = UIColor.blue.cgColor
-        goBackButton.layer.masksToBounds = true
+        goBackButton.setTitle("Cancel", for: .normal)
+        goBackButton.setTitleColor(UIColor.white, for: .normal)
+        goBackButton.backgroundColor = Constants.aqua
         goBackButton.addTarget(self, action: #selector(goBackButtonClicked), for: .touchUpInside)
         self.view.addSubview(goBackButton)
         
@@ -131,7 +166,7 @@ class SignUpViewController: UIViewController {
     
     
     func signupButtonClicked() {
-        let profileImageData = UIImageJPEGRepresentation(profileImageView.image!, 0.9)
+        let profileImageData = UIImageJPEGRepresentation(SignUpViewController.profileImageView.image!, 0.9)
         let email = emailTextField.text!
         let password = passwordTextField.text!
         let name = nameTextField.text!
@@ -146,7 +181,6 @@ class SignUpViewController: UIViewController {
                 storage.put(profileImageData!, metadata: metadata).observe(.success) { (snapshot) in
                     let url = snapshot.metadata?.downloadURL()?.absoluteString
                     ref.setValue(["name": name, "email": email, "imageUrl": url, "userName" : userName])
-                    //self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
                     self.nameTextField.text = ""
@@ -162,7 +196,6 @@ class SignUpViewController: UIViewController {
                 print(error.debugDescription)
             }
         })
-        //TODO: Implement this method with Firebase!
     }
     
     func goBackButtonClicked() {
@@ -186,9 +219,10 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         selectFromLibraryButton.removeFromSuperview()
+        cameraImage.removeFromSuperview()
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        profileImageView.contentMode = .scaleAspectFit
-        profileImageView.image = chosenImage
+        SignUpViewController.profileImageView.contentMode = .scaleAspectFit
+        SignUpViewController.profileImageView.image = chosenImage
         dismiss(animated:true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
