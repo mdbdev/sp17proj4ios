@@ -38,12 +38,14 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
+  - SwiftGifOrigin (1.6.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - SwiftGifOrigin (~> 1.6.1)
 
 SPEC CHECKSUMS:
   Firebase: 5bc34d7b5ff5792e3386c8b28dc6265deeab0da4
@@ -55,7 +57,8 @@ SPEC CHECKSUMS:
   FirebaseStorage: 63628572a5fde258f8e933b5fb42697468da0158
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
 
-PODFILE CHECKSUM: 456c49a6932d24617a345de0057005ba58283e71
+PODFILE CHECKSUM: ab827ed74346c140ee38aacff19c6dde4a1a0b68
 
 COCOAPODS: 1.2.0

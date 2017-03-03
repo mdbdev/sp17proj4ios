@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3228FEA44A13C7A7D03E57F6 /* Pods_MDBSocials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0818CD240BB2900CD2969B4C /* Pods_MDBSocials.framework */; };
+		9253098F1E681E77003C77F2 /* LikersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9253098E1E681E77003C77F2 /* LikersViewController.swift */; };
+		925309911E681ED7003C77F2 /* LikerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925309901E681ED7003C77F2 /* LikerTableViewCell.swift */; };
+		925309931E68DCC7003C77F2 /* loading-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 925309921E68DCC7003C77F2 /* loading-1.gif */; };
 		92D6896C1E6196D30063CAC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92D6896B1E6196D30063CAC2 /* GoogleService-Info.plist */; };
 		92D6896E1E6197C80063CAC2 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6896D1E6197C80063CAC2 /* FeedViewController.swift */; };
 		92D689701E6197FE0063CAC2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6896F1E6197FE0063CAC2 /* SignUpViewController.swift */; };
@@ -50,6 +53,9 @@
 		56466BFB5E6DE3B85EA80109 /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
 		722C99D8BDC211DC51EAE624 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
 		851742EA2DA798C22B57FE45 /* Pods-MDBSocialsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsUITests/Pods-MDBSocialsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9253098E1E681E77003C77F2 /* LikersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikersViewController.swift; sourceTree = "<group>"; };
+		925309901E681ED7003C77F2 /* LikerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikerTableViewCell.swift; sourceTree = "<group>"; };
+		925309921E68DCC7003C77F2 /* loading-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading-1.gif"; sourceTree = "<group>"; };
 		92D6896B1E6196D30063CAC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92D6896D1E6197C80063CAC2 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		92D6896F1E6197FE0063CAC2 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 				92D6896D1E6197C80063CAC2 /* FeedViewController.swift */,
 				92D689771E61B2A40063CAC2 /* NewSocialViewController.swift */,
 				92D689791E61B3FF0063CAC2 /* DetailViewController.swift */,
+				925309901E681ED7003C77F2 /* LikerTableViewCell.swift */,
 				92D6896F1E6197FE0063CAC2 /* SignUpViewController.swift */,
 				92D689711E6198350063CAC2 /* PostCollectionViewCell.swift */,
 				92D689731E6198500063CAC2 /* Post.swift */,
@@ -141,7 +148,9 @@
 				92EF3A431E60D2ED00B1D948 /* AppDelegate.swift */,
 				92EF3A451E60D2ED00B1D948 /* LoginViewController.swift */,
 				92EF3A471E60D2ED00B1D948 /* Main.storyboard */,
+				9253098E1E681E77003C77F2 /* LikersViewController.swift */,
 				92EF3A4A1E60D2ED00B1D948 /* Assets.xcassets */,
+				925309921E68DCC7003C77F2 /* loading-1.gif */,
 				92EF3A4C1E60D2ED00B1D948 /* LaunchScreen.storyboard */,
 				92EF3A4F1E60D2ED00B1D948 /* Info.plist */,
 			);
@@ -305,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				925309931E68DCC7003C77F2 /* loading-1.gif in Resources */,
 				92EF3A4E1E60D2ED00B1D948 /* LaunchScreen.storyboard in Resources */,
 				92D6896C1E6196D30063CAC2 /* GoogleService-Info.plist in Resources */,
 				92EF3A4B1E60D2ED00B1D948 /* Assets.xcassets in Resources */,
@@ -477,6 +487,8 @@
 				92D6896E1E6197C80063CAC2 /* FeedViewController.swift in Sources */,
 				92D689741E6198500063CAC2 /* Post.swift in Sources */,
 				92D689781E61B2A40063CAC2 /* NewSocialViewController.swift in Sources */,
+				9253098F1E681E77003C77F2 /* LikersViewController.swift in Sources */,
+				925309911E681ED7003C77F2 /* LikerTableViewCell.swift in Sources */,
 				92D689701E6197FE0063CAC2 /* SignUpViewController.swift in Sources */,
 				92EF3A441E60D2ED00B1D948 /* AppDelegate.swift in Sources */,
 				92D689761E6198610063CAC2 /* User.swift in Sources */,

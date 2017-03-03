@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftGifOrigin
 
 class FeedViewController: UIViewController {
     
@@ -73,9 +74,10 @@ class FeedViewController: UIViewController {
         postCollectionView.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: "post")
-//        postCollectionView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 50/2, right: 0)
+        postCollectionView.contentInset = UIEdgeInsets(top: -10, left: 0, bottom: 50/2, right: 0)
 
         postCollectionView.backgroundColor = UIColor.lightGray
+//        postCollectionView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 50/2, right: 0)
         view.addSubview(postCollectionView)
         
         
@@ -85,10 +87,14 @@ class FeedViewController: UIViewController {
         //TODO: Implement a method to fetch posts with Firebase!
         let ref = FIRDatabase.database().reference()
         ref.child("Posts").observe(.childAdded, with: { (snapshot) in
+            DispatchQueue.main.async {
             let post = Post(id: snapshot.key, postDict: (snapshot.value as! [String : Any]?)!)
-            self.posts.append(post)
-            
+            if post.likers.contains((self.currentUser?.id)!) {
+                post.go = Post.goingStatus.going
+            }
+            self.posts.insert(post, at: 0)
             withBlock()
+            }
         })
     }
     
@@ -96,11 +102,13 @@ class FeedViewController: UIViewController {
         //TODO: Implement a method to fetch posts with Firebase!
         let ref = FIRDatabase.database().reference()
         ref.child("Users").child((self.auth?.currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-            print("Fetching user...")
-            let user = User(id: snapshot.key, userDict: snapshot.value as! [String : Any]?)
-            self.currentUser = user
-            print("The user's email is \(self.currentUser?.email)")
-            withBlock()
+            DispatchQueue.main.async {
+                print("Fetching user...")
+                let user = User(id: snapshot.key, userDict: snapshot.value as! [String : Any]?)
+                self.currentUser = user
+                print("The user's email is \(self.currentUser?.email)")
+                withBlock()
+            }
             
         })
     }
@@ -115,16 +123,6 @@ class FeedViewController: UIViewController {
             newVC.currentUser = currentUser
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
@@ -147,19 +145,23 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = postCollectionView.dequeueReusableCell(withReuseIdentifier: "post", for: indexPath) as! PostCollectionViewCell
+        for subview in cell.contentView.subviews {
+            subview.removeFromSuperview()
+        }
         cell.awakeFromNib()
         let postInQuestion = posts[indexPath.row]
-        cell.postText.text = postInQuestion.description
-        cell.posterText.text = postInQuestion.poster
-        cell.post = postInQuestion
+        cell.profileImage.loadGif(name: "loading-1")
+        postInQuestion.getProfilePic(withBlock: { profImage in
+            DispatchQueue.main.async {
+                cell.profileImage.image = profImage
+
+            }
+        })
         
-        //TODO(?) Get image from Firebase Storage and put it on the post
-        //Uncomment code below to see sample post with profile picture
-        cell.profileImage.image = UIImage(named: "yeezy")
-        print(cell.bounds)
-//        print(UIScreen.main.bounds)
-//        cell.likeButton.tag = indexPath.row
-//        cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
+        cell.poster.text = postInQuestion.poster
+        cell.numRSVP.text = "RSVP Number: " + String(postInQuestion.likers.count)
+        cell.title.text = postInQuestion.title
+        cell.post = postInQuestion
         return cell
     }
     

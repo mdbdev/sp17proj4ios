@@ -63,7 +63,7 @@
                     <navigationItem key="navigationItem" id="pbJ-hX-Iky"/>
                     <connections>
                         <segue destination="U4y-qS-iw3" kind="show" identifier="toDetailFromFeed" id="a6b-0B-WsR"/>
-                        <segue destination="a2J-Ex-C0H" kind="show" identifier="toNewFromFeed" id="IQp-hE-eNx"/>
+                        <segue destination="a2J-Ex-C0H" kind="presentation" identifier="toNewFromFeed" id="ZjL-OY-9FP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYK-S7-faC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,10 +83,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="YSt-G0-z4B" kind="show" identifier="toLikersFromDetail" id="QgG-cn-m0C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vmc-KQ-usy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2540" y="73"/>
+        </scene>
+        <!--Likers View Controller-->
+        <scene sceneID="WMP-UL-Scd">
+            <objects>
+                <viewController id="YSt-G0-z4B" customClass="LikersViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EG5-1z-Psd"/>
+                        <viewControllerLayoutGuide type="bottom" id="H80-pf-ewA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Suj-An-6Lx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mau-rk-LTw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3608" y="98"/>
         </scene>
         <!--New Social View Controller-->
         <scene sceneID="tMi-Jj-xBk">

@@ -7,52 +7,56 @@
 //
 
 import UIKit
+import Firebase
 
 class PostCollectionViewCell: UICollectionViewCell {
     var post: Post!
     var profileImage: UIImageView!
-    var posterText: UILabel!
-    var postText: UITextView!
-//    var likeButton: UIButton!
+    var title: UILabel!
+    var poster: UILabel!
+    var numRSVP: UILabel!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.white
         setupProfileImage()
-        setupPosterText()
-        setupPostText()
-//        setupLikeButton()
+        setupTitle()
+        setupPoster()
+        setupNumRSVP()
     }
     
     func setupProfileImage() {
-        profileImage = UIImageView(frame: CGRect(x: 10, y: 10, width: 0.50 * self.frame.height, height: 0.50 * self.frame.height))
+        profileImage = UIImageView(frame: CGRect(x: 5, y: 5, width: self.frame.width / 2 - 10, height: self.frame.height - 10))
         profileImage.clipsToBounds = true
         profileImage.contentMode = .scaleAspectFit
-        addSubview(profileImage)
+        contentView.addSubview(profileImage)
     }
     
-    func setupPosterText() {
-        posterText = UILabel(frame: CGRect(x: profileImage.frame.maxX + 10, y: 10, width: self.frame.width, height: 30))
-        posterText.textColor = UIColor.black
-        posterText.font = UIFont.systemFont(ofSize: 24, weight: 2)
-        posterText.adjustsFontForContentSizeCategory = true
-        addSubview(posterText)
+    func setupTitle() {
+        title = UILabel(frame: CGRect(x: profileImage.frame.maxX + 10, y: 10, width: self.frame.width/2 - 10, height: 30))
+        title.textColor = UIColor.black
+        title.font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightBold)
+        title.adjustsFontForContentSizeCategory = true
+        contentView.addSubview(title)
     }
     
-    func setupPostText() {
-        postText = UITextView(frame: CGRect(x: profileImage.frame.maxX + 10, y: posterText.frame.maxY + 10, width: self.frame.width, height: 0.5 * self.frame.height - 40))
-        postText.textColor = UIColor.black
-        postText.adjustsFontForContentSizeCategory = true
-        postText.isEditable = false
-        addSubview(postText)
+    func setupPoster() {
+        poster = UILabel(frame: CGRect(x: profileImage.frame.maxX + 10, y: title.frame.maxY + 10, width: self.frame.width/2 - 10, height: 0.5 * self.frame.height - 40))
+        poster.textColor = UIColor.black
+        title.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        poster.adjustsFontForContentSizeCategory = true
+        contentView.addSubview(poster)
         
     }
-//    func setupLikeButton() {
-//        likeButton = UIButton(frame: CGRect(x: 10, y: profileImage.frame.maxY + 10, width: 50, height: 30))
-//        likeButton.setTitle("Like", for: .normal)
-//        likeButton.setTitle("Unlike", for: .selected)
-//        likeButton.setTitleColor(UIColor.blue, for: .normal)
-//        addSubview(likeButton)
-//    }
-//    
+    
+    func setupNumRSVP() {
+        numRSVP = UILabel(frame: CGRect(x: profileImage.frame.maxX + 10, y: poster.frame.maxY + 10, width: self.frame.width/2 - 10, height: 0.5 * self.frame.height - 40))
+        numRSVP.textColor = UIColor.black
+        title.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        numRSVP.adjustsFontForContentSizeCategory = true
+        contentView.addSubview(numRSVP)
+        
+    }
+
 }
