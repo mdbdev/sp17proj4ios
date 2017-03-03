@@ -72,7 +72,6 @@ class DetailViewController: UIViewController {
     
     func initImageView() {
         imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: mainInstance.imageWidth, height: mainInstance.imageHeight))
-        print(post.imageUrl)
         imageView.layer.masksToBounds = true
         
         let storage = FIRStorage.storage()
@@ -83,11 +82,9 @@ class DetailViewController: UIViewController {
             }
             // 1. Download the image into the struct's image field
             self.post.image = CustomImage(data: data!)
-            //self.post.image = #imageLiteral(resourceName: "default.png")
             
             self.imageView.contentMode = UIViewContentMode.scaleAspectFill
             self.imageView.image = self.post.image
-            print("doing")
             self.view.addSubview(self.imageView)
         })
     }
@@ -173,7 +170,7 @@ class DetailViewController: UIViewController {
                 print(usersLikedKey.key)
                 print(usersLikedRef.key)
                 if snapshot.hasChild(usersLikedKey.key) {
-                    print("KLJFKLJDFA")
+                    
                 } else {
                     let update = ["/\(key)/": userLiked]
                     

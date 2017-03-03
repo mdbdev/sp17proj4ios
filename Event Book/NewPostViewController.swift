@@ -87,16 +87,6 @@ class NewPostViewController: UIViewController, ImagePickerDelegate, UITextViewDe
             
             var heightToWidthRatio = images[0].size.height / images[0].size.width
             
-            //if heightTo
-            
-            /*if heightToWidthRatio > mainInstance.heightToWidthScalingFactor {
-                imageToUpload = resizeImage(image: images[0], targetSize: CGSize(width: 100, height: 100))
-            } else {
-                imageToUpload = resizeImage(image: images[0], targetSize: CGSize(width: 100, height: 100))
-            }*/
-            
-            print("HI: ", mainInstance.heightToWidthScalingFactor)
-            
             if heightToWidthRatio > mainInstance.heightToWidthScalingFactor {
                 let width = images[0].size.width
                 var scalingFactor = mainInstance.imageWidth / width
@@ -106,8 +96,6 @@ class NewPostViewController: UIViewController, ImagePickerDelegate, UITextViewDe
                 var scalingFactor = mainInstance.imageHeight / height
                 imageToUpload = resizeImage(image: images[0], targetSize: CGSize(width: scalingFactor * images[0].size.width, height: scalingFactor * height))
             }
-            
-            //imageToUpload = resizeImage(image: images[0], targetSize: CGSize(width:mainInstance.imageWidth * 2, height: mainInstance.imageHeight * 2))
             
             if let uploadData = UIImagePNGRepresentation(imageToUpload) {
                 
@@ -143,20 +131,9 @@ class NewPostViewController: UIViewController, ImagePickerDelegate, UITextViewDe
                     
                     _ = self.navigationController?.popViewController(animated: true)
                     self.dismiss(animated: true, completion: nil)
-                    print("Finished making post, going back one view")
-                    
                 })
-                
-                
             }
         }
-        
-        /*print("Make Post")
-         //Add the post (with image url) into database
-         let newPost = ["title": titleField.text!, "poster": currentUser?.firstname, "imageURL": currentUser?.email, "numLikes": 0, "posterId": currentUser?.id, "description": descriptionField.text!] as [String : Any]
-         let key = postsRef.childByAutoId().key
-         let childUpdates = ["/\(key)/": newPost]
-         postsRef.updateChildValues(childUpdates)*/
     }
     
     fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {

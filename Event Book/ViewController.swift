@@ -46,20 +46,9 @@ class ViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = true
         
-        //CREATE USER CODE
-        /*FIRAuth.auth()?.createUser(withEmail: "test@gmail.com", password: "password123") { (user, error) in
-         if error != nil {
-         print(error)
-         }
-         }*/
-        
         initRoundedView()
         initLoginButton()
         initSignupButton()
-        
-        
-        //PostsCollection.posts = PostsCollection.getImagesArray()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     
@@ -151,20 +140,16 @@ class ViewController: UIViewController {
     func loginClicked() {
         FIRAuth.auth()?.signIn(withEmail: usernameField.text!, password: passwordField.text!) { (user, error) in
             if user != nil {
-                print("logged in")
                 self.performSegue(withIdentifier: "toFeed", sender: nil)
             } else {
                 print(error)
             }
         }
-        //print("Login click event received")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSignup" {
             let listVC = segue.destination as! SignupViewController
-            //pokemonsToPass = pokemonsToPass.sorted{$0.name < $1.name} //sort alphabetically
-            //listVC.pokemons = self.pokemonsToPass
         } else if segue.identifier == "toFeed" {
             let listVC = segue.destination as! FeedViewController
         }

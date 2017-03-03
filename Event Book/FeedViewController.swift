@@ -41,12 +41,9 @@ class FeedViewController: UIViewController {
         //posts.append(samplePost)
         fetchUser {
             self.fetchPosts() {
-                print("done")
                 
                 self.initPostButton()
                 self.setupCollectionView()
-                
-                
                 
                 activityIndicator.stopAnimating()
             }
@@ -58,7 +55,6 @@ class FeedViewController: UIViewController {
     }
     
     func initPostButton() {
-        print("initializing post button")
         newPostButton = UIButton(frame: CGRect(x: 0, y: view.frame.maxY - 40, width: view.frame.width, height: 40))
         newPostButton.setTitle("New Event", for: .normal)
         newPostButton.setTitleColor(UIColor.white, for: .normal)
@@ -110,7 +106,6 @@ class FeedViewController: UIViewController {
         let bottom = UIColor(red: 22/255, green: 30/255, blue: 43/255, alpha: 1.0).cgColor
         let top = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor
         
-        let verytop = UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor
         var colors = [top, bottom] as CFArray
         var gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: locations)
         
@@ -248,10 +243,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let cell = mainInstance.postCollectionView.dequeueReusableCell(withReuseIdentifier: "post", for: indexPath) as! PostCollectionViewCell
         
-        //if cell.profileImage == nil {
-        
-        //var button = cell.faveButton
-        
         for subview in cell.contentView.subviews {
             subview.removeFromSuperview()
         }
@@ -280,11 +271,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.post = postInQuestion
         
-        //cell.faveButton = button
-        
         return cell
-        //}
-        //return cell
     }
     
     override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
@@ -318,14 +305,12 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension FeedViewController:ExpandedCellDelegate{
     func likePressed(indexPath: IndexPath) {
         isExpanded[indexPath.row] = !isExpanded[indexPath.row]
-        print("LIKE PRESPIOSEIJOJOIFSEIOJFESOIFJESJF")
         UIView.animate(withDuration: 0.0, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.9, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             DispatchQueue.main.async {
                 mainInstance.postCollectionView.reloadItems(at: [indexPath])
-                (mainInstance.postCollectionView.cellForItem(at: indexPath) as! PostCollectionViewCell).updateShit()
             }
         }, completion: { success in
-            print("success")
+            
         })
     }
 }

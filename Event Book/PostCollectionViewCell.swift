@@ -46,8 +46,6 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     var favorited = false
     
-    var i = 0
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.white
@@ -60,26 +58,19 @@ class PostCollectionViewCell: UICollectionViewCell {
         
         setupFaveButton()
         
-        //postText.isHidden = true
         likeButton.isHidden = true
         
         setupExpandButton()
     }
     
     func setupFaveButton() {
-        print("fave button setup", favorited)
-        i += 1
-        //faveButton = FaveButton(frame: CGRect(x: contentView.frame.width - 50, y: 10, width: 40, height: 40))
         faveButton = FaveButton(frame: CGRect(x: contentView.frame.width - 50, y: 10, width: 40, height: 40),   faveIconNormal: UIImage(named: "heart"))
         faveButton.addTarget(self, action: #selector(faveClicked), for: UIControlEvents.touchUpInside)
         faveButton.delegate = self
-            
-        //faveButton.layer.zPosition = 1000
         
         contentView.addSubview(faveButton)
         
         if mainInstance.isFaved[indexPath.row] {
-            print("faved")
             faveButton.animateOnSelect = false
             faveButton.isSelected = true
             faveButton.animateOnSelect = true
@@ -113,10 +104,7 @@ class PostCollectionViewCell: UICollectionViewCell {
             let usersLikedKey = usersLikedRef.child(userId)
             
             dbRef.child("Posts").child(usersLikedRef.key).observeSingleEvent(of: .value, with: { (snapshot) in
-                print(usersLikedKey.key)
-                print(usersLikedRef.key)
                 if snapshot.hasChild(usersLikedKey.key) {
-                    print("KLJFKLJDFA")
                 } else {
                     let update = ["/\(key)/": userLiked]
                     
@@ -154,18 +142,6 @@ class PostCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func updateShit() {
-        /*expanded = !expanded
-        if expanded {
-            postText.isHidden = false
-            //setupPostText()
-        } else {
-            postText.isHidden = true
-        }*/
-        //contentView.addSubview(faveButton)
-        print("updated - ", i)
-    }
-    
     func setupExpandButton() {
         expandButton = UIButton(frame: CGRect(x: contentView.frame.maxX - 50, y: authorText.frame.minY, width: 50, height: 8))
         expandButton.setImage(UIImage.init(named: "expand.png"), for: .normal)
@@ -196,8 +172,6 @@ class PostCollectionViewCell: UICollectionViewCell {
         mainInstance.imageWidth = imageWidth
         mainInstance.imageHeight = imageHeight
         
-        print("height: ", imageHeight)
-        print("widht: ", imageWidth)
         mainInstance.heightToWidthScalingFactor = CGFloat(CGFloat(imageHeight) / CGFloat(imageWidth))
         
         profileImage = CustomImageView(frame: CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
@@ -281,17 +255,6 @@ class PostCollectionViewCell: UICollectionViewCell {
         shapeLayer.lineWidth = 0.5
         
         contentView.layer.addSublayer(shapeLayer)
-        
-        /*linePath.move(to: CGPoint.init(x: 0, y: height / 2))
-        linePath.addLine(to: CGPoint.init(x: Int(roundedView.frame.width), y: height / 2))
-        linePath.move(to: CGPoint.init(x: 0, y: (height / 2) * 2))
-        linePath.addLine(to: CGPoint.init(x: Int(roundedView.frame.width), y: (height / 2) * 2))
-        linePath.move(to: CGPoint.init(x: 0, y: (height / 2) * 3))
-        linePath.addLine(to: CGPoint.init(x: Int(roundedView.frame.width), y: (height / 2) * 3))
-        linePath.move(to: CGPoint.init(x: 0, y: (height / 2) * 4))
-        linePath.addLine(to: CGPoint.init(x: Int(roundedView.frame.width), y: (height / 2) * 4))
-        linePath.close()
-        linePath.stroke()*/
     }
     
     override func prepareForReuse() {
