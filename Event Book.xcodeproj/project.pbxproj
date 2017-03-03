@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A679D531E68ADB80080EFA2 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A679D521E68ADB80080EFA2 /* Roboto-Light.ttf */; };
+		1A679D551E68CD540080EFA2 /* expand.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A679D541E68CD540080EFA2 /* expand.png */; };
+		1A679D571E68DEB60080EFA2 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A679D561E68DEB60080EFA2 /* heart.png */; };
 		1A91E0FF1E662AE1001F6F89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E0FE1E662AE1001F6F89 /* AppDelegate.swift */; };
 		1A91E1011E662AE1001F6F89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1001E662AE1001F6F89 /* ViewController.swift */; };
 		1A91E1041E662AE1001F6F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A91E1021E662AE1001F6F89 /* Main.storyboard */; };
@@ -14,6 +17,22 @@
 		1A91E1091E662AE1001F6F89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A91E1071E662AE1001F6F89 /* LaunchScreen.storyboard */; };
 		1A91E1141E662AE1001F6F89 /* Event_BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1131E662AE1001F6F89 /* Event_BookTests.swift */; };
 		1A91E11F1E662AE1001F6F89 /* Event_BookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E11E1E662AE1001F6F89 /* Event_BookUITests.swift */; };
+		1A91E12D1E662B88001F6F89 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A91E12C1E662B88001F6F89 /* Roboto-Regular.ttf */; };
+		1A91E12F1E662BB5001F6F89 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A91E12E1E662BB5001F6F89 /* GoogleService-Info.plist */; };
+		1A91E1311E662C80001F6F89 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1301E662C80001F6F89 /* SignupViewController.swift */; };
+		1A91E1331E662C8D001F6F89 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1321E662C8D001F6F89 /* CustomView.swift */; };
+		1A91E1351E662C9E001F6F89 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1341E662C9E001F6F89 /* DetailViewController.swift */; };
+		1A91E1371E662CAA001F6F89 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1361E662CAA001F6F89 /* User.swift */; };
+		1A91E1391E662CB5001F6F89 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1381E662CB5001F6F89 /* NewPostViewController.swift */; };
+		1A91E13B1E662CBD001F6F89 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E13A1E662CBD001F6F89 /* Post.swift */; };
+		1A91E13D1E662CC7001F6F89 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E13C1E662CC7001F6F89 /* FeedViewController.swift */; };
+		1A91E13F1E662CE0001F6F89 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E13E1E662CE0001F6F89 /* PostCollectionViewCell.swift */; };
+		1A91E1411E662DFA001F6F89 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91E1401E662DFA001F6F89 /* CustomTextField.swift */; };
+		1AF8AB771E667E59006B0F07 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8AB761E667E59006B0F07 /* default.png */; };
+		1AF8AB791E668D27006B0F07 /* MDBSocialsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8AB781E668D27006B0F07 /* MDBSocialsUtils.swift */; };
+		426DE90FCF51AEA7C5093801 /* Pods_Event_BookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499B53E90E0B1F4018D1B93C /* Pods_Event_BookUITests.framework */; };
+		7009B133BA6BB480E18960E5 /* Pods_Event_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3D244AA2CA851556930D6E /* Pods_Event_Book.framework */; };
+		983A006533402C3B4C91BBB9 /* Pods_Event_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1AAC745B56652663225E43 /* Pods_Event_BookTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A679D521E68ADB80080EFA2 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		1A679D541E68CD540080EFA2 /* expand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expand.png; sourceTree = "<group>"; };
+		1A679D561E68DEB60080EFA2 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		1A91E0FB1E662AE1001F6F89 /* Event Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A91E0FE1E662AE1001F6F89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A91E1001E662AE1001F6F89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +69,28 @@
 		1A91E11A1E662AE1001F6F89 /* Event BookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Event BookUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A91E11E1E662AE1001F6F89 /* Event_BookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event_BookUITests.swift; sourceTree = "<group>"; };
 		1A91E1201E662AE1001F6F89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A91E12C1E662B88001F6F89 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		1A91E12E1E662BB5001F6F89 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1A91E1301E662C80001F6F89 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		1A91E1321E662C8D001F6F89 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		1A91E1341E662C9E001F6F89 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1A91E1361E662CAA001F6F89 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1A91E1381E662CB5001F6F89 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		1A91E13A1E662CBD001F6F89 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		1A91E13C1E662CC7001F6F89 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		1A91E13E1E662CE0001F6F89 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		1A91E1401E662DFA001F6F89 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		1AF8AB761E667E59006B0F07 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		1AF8AB781E668D27006B0F07 /* MDBSocialsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDBSocialsUtils.swift; sourceTree = "<group>"; };
+		4789216EBD829C9DB2B812A0 /* Pods-Event BookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Event BookUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Event BookUITests/Pods-Event BookUITests.release.xcconfig"; sourceTree = "<group>"; };
+		499B53E90E0B1F4018D1B93C /* Pods_Event_BookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Event_BookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A16DCBCD7D778AEBC7881DF /* Pods-Event BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Event BookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Event BookTests/Pods-Event BookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		77E0C88D7170B6B8F5BD5D1C /* Pods-Event BookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Event BookUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Event BookUITests/Pods-Event BookUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8AD9F6C262405C2473E9D68F /* Pods-Event Book.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Event Book.release.xcconfig"; path = "Pods/Target Support Files/Pods-Event Book/Pods-Event Book.release.xcconfig"; sourceTree = "<group>"; };
+		8F53A96AF60CA82584931C55 /* Pods-Event BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Event BookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Event BookTests/Pods-Event BookTests.release.xcconfig"; sourceTree = "<group>"; };
+		9B1AAC745B56652663225E43 /* Pods_Event_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Event_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CC145C781B881EEBB864E5D /* Pods-Event Book.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Event Book.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Event Book/Pods-Event Book.debug.xcconfig"; sourceTree = "<group>"; };
+		AE3D244AA2CA851556930D6E /* Pods_Event_Book.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Event_Book.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7009B133BA6BB480E18960E5 /* Pods_Event_Book.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983A006533402C3B4C91BBB9 /* Pods_Event_BookTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +114,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				426DE90FCF51AEA7C5093801 /* Pods_Event_BookUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		036F0F9F2BB06DD267159D17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE3D244AA2CA851556930D6E /* Pods_Event_Book.framework */,
+				9B1AAC745B56652663225E43 /* Pods_Event_BookTests.framework */,
+				499B53E90E0B1F4018D1B93C /* Pods_Event_BookUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1A91E0F21E662AE1001F6F89 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +138,8 @@
 				1A91E1121E662AE1001F6F89 /* Event BookTests */,
 				1A91E11D1E662AE1001F6F89 /* Event BookUITests */,
 				1A91E0FC1E662AE1001F6F89 /* Products */,
+				B35F63E37E329619B8D9E441 /* Pods */,
+				036F0F9F2BB06DD267159D17 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,7 +159,23 @@
 				1A91E0FE1E662AE1001F6F89 /* AppDelegate.swift */,
 				1A91E1001E662AE1001F6F89 /* ViewController.swift */,
 				1A91E1021E662AE1001F6F89 /* Main.storyboard */,
+				1A91E1301E662C80001F6F89 /* SignupViewController.swift */,
+				1A91E1401E662DFA001F6F89 /* CustomTextField.swift */,
+				1AF8AB761E667E59006B0F07 /* default.png */,
+				1A91E1321E662C8D001F6F89 /* CustomView.swift */,
+				1A91E1341E662C9E001F6F89 /* DetailViewController.swift */,
+				1A91E1361E662CAA001F6F89 /* User.swift */,
+				1A91E1381E662CB5001F6F89 /* NewPostViewController.swift */,
+				1A679D541E68CD540080EFA2 /* expand.png */,
+				1AF8AB781E668D27006B0F07 /* MDBSocialsUtils.swift */,
+				1A679D561E68DEB60080EFA2 /* heart.png */,
+				1A91E13A1E662CBD001F6F89 /* Post.swift */,
+				1A91E13C1E662CC7001F6F89 /* FeedViewController.swift */,
+				1A91E13E1E662CE0001F6F89 /* PostCollectionViewCell.swift */,
+				1A679D521E68ADB80080EFA2 /* Roboto-Light.ttf */,
 				1A91E1051E662AE1001F6F89 /* Assets.xcassets */,
+				1A91E12C1E662B88001F6F89 /* Roboto-Regular.ttf */,
+				1A91E12E1E662BB5001F6F89 /* GoogleService-Info.plist */,
 				1A91E1071E662AE1001F6F89 /* LaunchScreen.storyboard */,
 				1A91E10A1E662AE1001F6F89 /* Info.plist */,
 			);
@@ -125,6 +200,19 @@
 			path = "Event BookUITests";
 			sourceTree = "<group>";
 		};
+		B35F63E37E329619B8D9E441 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9CC145C781B881EEBB864E5D /* Pods-Event Book.debug.xcconfig */,
+				8AD9F6C262405C2473E9D68F /* Pods-Event Book.release.xcconfig */,
+				4A16DCBCD7D778AEBC7881DF /* Pods-Event BookTests.debug.xcconfig */,
+				8F53A96AF60CA82584931C55 /* Pods-Event BookTests.release.xcconfig */,
+				77E0C88D7170B6B8F5BD5D1C /* Pods-Event BookUITests.debug.xcconfig */,
+				4789216EBD829C9DB2B812A0 /* Pods-Event BookUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +220,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A91E1231E662AE1001F6F89 /* Build configuration list for PBXNativeTarget "Event Book" */;
 			buildPhases = (
+				E442CF5AB7C0FC4BD0ED8654 /* [CP] Check Pods Manifest.lock */,
 				1A91E0F71E662AE1001F6F89 /* Sources */,
 				1A91E0F81E662AE1001F6F89 /* Frameworks */,
 				1A91E0F91E662AE1001F6F89 /* Resources */,
+				6BE3CDA797369DBCC9DAA91A /* [CP] Embed Pods Frameworks */,
+				EB5E560C042D191BB0248BB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +240,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A91E1261E662AE1001F6F89 /* Build configuration list for PBXNativeTarget "Event BookTests" */;
 			buildPhases = (
+				B3A1AB2E249E5266400E44A4 /* [CP] Check Pods Manifest.lock */,
 				1A91E10B1E662AE1001F6F89 /* Sources */,
 				1A91E10C1E662AE1001F6F89 /* Frameworks */,
 				1A91E10D1E662AE1001F6F89 /* Resources */,
+				3D4900EF8E292555EE50C93B /* [CP] Embed Pods Frameworks */,
+				11C9A803DAA22EE15D67FC92 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +261,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A91E1291E662AE1001F6F89 /* Build configuration list for PBXNativeTarget "Event BookUITests" */;
 			buildPhases = (
+				ACC9B2DA2B7A6CC5694C218F /* [CP] Check Pods Manifest.lock */,
 				1A91E1161E662AE1001F6F89 /* Sources */,
 				1A91E1171E662AE1001F6F89 /* Frameworks */,
 				1A91E1181E662AE1001F6F89 /* Resources */,
+				316062F973DE494C3F524D96 /* [CP] Embed Pods Frameworks */,
+				A0E5616DFCF0E97BDDB726F3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,8 +330,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A91E1091E662AE1001F6F89 /* LaunchScreen.storyboard in Resources */,
+				1A679D571E68DEB60080EFA2 /* heart.png in Resources */,
 				1A91E1061E662AE1001F6F89 /* Assets.xcassets in Resources */,
+				1A91E12F1E662BB5001F6F89 /* GoogleService-Info.plist in Resources */,
+				1A91E12D1E662B88001F6F89 /* Roboto-Regular.ttf in Resources */,
+				1A679D531E68ADB80080EFA2 /* Roboto-Light.ttf in Resources */,
+				1A679D551E68CD540080EFA2 /* expand.png in Resources */,
 				1A91E1041E662AE1001F6F89 /* Main.storyboard in Resources */,
+				1AF8AB771E667E59006B0F07 /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,11 +357,159 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		11C9A803DAA22EE15D67FC92 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Event BookTests/Pods-Event BookTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		316062F973DE494C3F524D96 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Event BookUITests/Pods-Event BookUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3D4900EF8E292555EE50C93B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Event BookTests/Pods-Event BookTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BE3CDA797369DBCC9DAA91A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Event Book/Pods-Event Book-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0E5616DFCF0E97BDDB726F3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Event BookUITests/Pods-Event BookUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACC9B2DA2B7A6CC5694C218F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B3A1AB2E249E5266400E44A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E442CF5AB7C0FC4BD0ED8654 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB5E560C042D191BB0248BB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Event Book/Pods-Event Book-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1A91E0F71E662AE1001F6F89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A91E13F1E662CE0001F6F89 /* PostCollectionViewCell.swift in Sources */,
+				1A91E1411E662DFA001F6F89 /* CustomTextField.swift in Sources */,
+				1AF8AB791E668D27006B0F07 /* MDBSocialsUtils.swift in Sources */,
+				1A91E1311E662C80001F6F89 /* SignupViewController.swift in Sources */,
+				1A91E13D1E662CC7001F6F89 /* FeedViewController.swift in Sources */,
+				1A91E1331E662C8D001F6F89 /* CustomView.swift in Sources */,
+				1A91E1371E662CAA001F6F89 /* User.swift in Sources */,
+				1A91E13B1E662CBD001F6F89 /* Post.swift in Sources */,
+				1A91E1391E662CB5001F6F89 /* NewPostViewController.swift in Sources */,
+				1A91E1351E662C9E001F6F89 /* DetailViewController.swift in Sources */,
 				1A91E1011E662AE1001F6F89 /* ViewController.swift in Sources */,
 				1A91E0FF1E662AE1001F6F89 /* AppDelegate.swift in Sources */,
 			);
@@ -410,6 +661,7 @@
 		};
 		1A91E1241E662AE1001F6F89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CC145C781B881EEBB864E5D /* Pods-Event Book.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Event Book/Info.plist";
@@ -422,6 +674,7 @@
 		};
 		1A91E1251E662AE1001F6F89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AD9F6C262405C2473E9D68F /* Pods-Event Book.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Event Book/Info.plist";
@@ -434,6 +687,7 @@
 		};
 		1A91E1271E662AE1001F6F89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A16DCBCD7D778AEBC7881DF /* Pods-Event BookTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -448,6 +702,7 @@
 		};
 		1A91E1281E662AE1001F6F89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F53A96AF60CA82584931C55 /* Pods-Event BookTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -462,6 +717,7 @@
 		};
 		1A91E12A1E662AE1001F6F89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77E0C88D7170B6B8F5BD5D1C /* Pods-Event BookUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Event BookUITests/Info.plist";
@@ -475,6 +731,7 @@
 		};
 		1A91E12B1E662AE1001F6F89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4789216EBD829C9DB2B812A0 /* Pods-Event BookUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Event BookUITests/Info.plist";
@@ -505,6 +762,7 @@
 				1A91E1251E662AE1001F6F89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A91E1261E662AE1001F6F89 /* Build configuration list for PBXNativeTarget "Event BookTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +771,7 @@
 				1A91E1281E662AE1001F6F89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A91E1291E662AE1001F6F89 /* Build configuration list for PBXNativeTarget "Event BookUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +780,7 @@
 				1A91E12B1E662AE1001F6F89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
