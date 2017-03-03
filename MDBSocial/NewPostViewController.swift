@@ -15,11 +15,12 @@ class NewPostViewController: UIViewController {
     var nameView: UITextField!
     var dateView: UITextField!
     var newPostButton: UIButton!
-    var user: User?
+    var user: User!
     var postsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Posts")
     let picker = UIImagePickerController()
     var selectFromLibraryButton: UIButton!
     var profileImageView: UIImageView!
+    var image_Url: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,8 @@ class NewPostViewController: UIViewController {
     }
     
     func setupNameView() {
-        nameView = UITextField(frame: CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width - 20, height: 0.1 * UIScreen.main.bounds.height))
-        print("i reach here")
+        nameView = UITextField(frame: CGRect(x: 10, y: 10 + (self.navigationController?.navigationBar.frame.maxY)!, width: UIScreen.main.bounds.width - 20, height: 0.1 * UIScreen.main.bounds.height))
+        print("i reach here1")
         nameView.layoutIfNeeded()
         nameView.layer.shadowRadius = 2.0
         nameView.layer.masksToBounds = true
@@ -44,7 +45,7 @@ class NewPostViewController: UIViewController {
     
     func setupDateView() {
         dateView = UITextField(frame: CGRect(x: 10, y: nameView.frame.maxY, width: UIScreen.main.bounds.width - 20, height: 0.1 * UIScreen.main.bounds.height))
-        print("i reach here")
+        print("i reach here2")
         dateView.layoutIfNeeded()
         dateView.layer.shadowRadius = 2.0
         dateView.layer.masksToBounds = true
@@ -54,7 +55,7 @@ class NewPostViewController: UIViewController {
     
     func setupNewPostView() {
         newPostView = UITextField(frame: CGRect(x: 10, y: dateView.frame.maxY, width: UIScreen.main.bounds.width - 20, height: 0.2 * UIScreen.main.bounds.height))
-        print("i reach here")
+        print("i reach here3")
         newPostView.layoutIfNeeded()
         newPostView.layer.shadowRadius = 2.0
         newPostView.layer.masksToBounds = true
@@ -63,7 +64,7 @@ class NewPostViewController: UIViewController {
     }
     
     
-//    
+//    Keep this until I'm sure my image uploading works
 //    func setupImageButton() {
 //        imageButton = UIButton(frame: CGRect(x: 10, y: newPostView.frame.maxY + 10, width: UIScreen.main.bounds.width - 20, height: 50))
 //        imageButton.setTitle("Choose Photo", for: .normal)
@@ -76,6 +77,7 @@ class NewPostViewController: UIViewController {
 //        imageButton.addTarget(self, action: #selector(pickImage), for: .touchUpInside)
 //        view.addSubview(imageButton)
 //    }
+    
     func setupProfileImageView() {
         profileImageView = UIImageView(frame: CGRect(x: 10, y: newPostView.frame.maxY + 10, width: UIScreen.main.bounds.width - 20, height: 50))
         selectFromLibraryButton = UIButton(frame: profileImageView.frame)
@@ -108,50 +110,84 @@ class NewPostViewController: UIViewController {
         present(picker, animated: true, completion: nil)
     }
     
+//    func addNewPost(sender: UIButton!) {
+//        //TODO: Implement using Firebase!
+//        let postText = newPostView.text!
+//        let nameOfEvent = nameView.text!
+//        let dateOfEvent = dateView.text!
+//        // let profileImageData = UIImageJPEGRepresentation(profileImageView.image!, 0.9)
+//        let postKey = postsRef.childByAutoId().key
+//        // let storage = FIRStorage.storage().reference().child("profilepics/\((FIRAuth.auth()?.currentUser?.uid)!)")
+//        let storage = FIRStorage.storage().reference().child("profilepics/\((postKey))")
+//        let metadata = FIRStorageMetadata()
+//        metadata.contentType = "image/jpeg"
+//        
+////        storage.put(profileImageData!, metadata: metadata).observe(.success) { (snapshot) in
+////            self.url = snapshot.metadata?.downloadURL()?.absoluteString
+////            self.newPostView.text = ""
+////            // let newPost = ["name": nameOfEvent, "date": dateOfEvent, "text": postText, "poster": self.user?.name, "numLikes": 0, "posterId": self.user?.id, "imageURL": url, "guests": []] as [String : Any]
+//        
+//            self.setupProfilePic(id: postKey) {
+//                let newPost = ["name": nameOfEvent, "date": dateOfEvent, "text": postText, "poster": self.user?.name, "numLikes": 0, "posterId": self.user?.id, "imageURL": url, "guests": []] as [String : Any]
+//                print("enters here")
+//                let key = self.postsRef.childByAutoId().key
+//                let childUpdates = ["/\(key)/": newPost]
+//                self.postsRef.updateChildValues(childUpdates)
+//            }
+//        
+//        }
+//        // Returns to FeedVC after the post is created
+//        if let navController = self.navigationController {
+//            navController.popViewController(animated: true)
+//        }
+
+    
+    
+    // This is fixed?
     func addNewPost(sender: UIButton!) {
         //TODO: Implement using Firebase!
         let postText = newPostView.text!
         let nameOfEvent = nameView.text!
-        let dateOfEvent = nameView.text!
-        let profileImageData = UIImageJPEGRepresentation(profileImageView.image!, 0.9)
-        let storage = FIRStorage.storage().reference().child("profilepics/\((FIRAuth.auth()?.currentUser?.uid)!)")
+        let dateOfEvent = dateView.text!
+        if postText != "" && nameOfEvent != "" && dateOfEvent != "" && profileImageView.image != nil {
+            self.newPostView.text = ""
+            self.dateView.text = ""
+            self.nameView.text = ""
+            let key = postsRef.childByAutoId().key
+            setupProfilePic(id: key) {
+                let newPost = ["description": postText, "title": nameOfEvent, "date": dateOfEvent, "poster": self.user?.name, "imageUrl": self.image_Url!, "numLikes": 0, "posterId": self.user!.id, "guests": []] as [String : Any]
+                let childUpdates = ["/\(key)/": newPost]
+                self.postsRef.updateChildValues(childUpdates)
+            }
+            self.profileImageView.image = nil
+            if let navController = self.navigationController {
+                navController.popViewController(animated: true)
+            }
+        }
+    }
+    
+    
+    func setupProfilePic(id: String, withBlock: @escaping () -> ()) {
+        let newImageData = UIImageJPEGRepresentation(profileImageView.image!, 0.9)
+        let storage = FIRStorage.storage().reference().child("profilepics/\((id))")
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"
-        storage.put(profileImageData!, metadata: metadata).observe(.success) { (snapshot) in
-            let url = snapshot.metadata?.downloadURL()?.absoluteString
-            
-            self.newPostView.text = ""
-            let newPost = ["name": nameOfEvent, "date": nameOfEvent, "text": postText, "poster": self.user?.name, "numLikes": 0, "posterId": self.user?.id, "imageURL": url] as [String : Any]
-            let key = self.postsRef.childByAutoId().key
-            let childUpdates = ["/\(key)/": newPost]
-            self.postsRef.updateChildValues(childUpdates)
-            self.dismiss(animated: true, completion: nil)
-            // Find a way to go back here
-            // performSegue(withIdentifier: "NewPostToFeed", sender: self)
+        storage.put(newImageData!, metadata: metadata).observe(.success) { (snapshot) in
+            self.image_Url = snapshot.metadata?.downloadURL()?.absoluteString
+            withBlock()
         }
-        
-        
-        func didReceiveMemoryWarning() {
+    }
+    
+        override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
             // Dispose of any resources that can be recreated.
         }
-        
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destinationViewController.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
-    }
 }
 
 extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    //MARK: - Delegates
+    
+    
+    // MARK: - Delegates
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         selectFromLibraryButton.removeFromSuperview()

@@ -18,6 +18,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     var postText: UITextView!
     var likeButton: UIButton!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.white

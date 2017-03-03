@@ -29,9 +29,8 @@ class FeedViewController: UIViewController {
         posts.append(samplePost)
         fetchUser {
             self.fetchPosts() {
-                print("done")
                 self.setupNavBar()
-                self.setupButton()
+                // self.setupButton()
                 self.setupCollectionView()
             }
         }
@@ -70,42 +69,15 @@ class FeedViewController: UIViewController {
         }
     }
     
-    func setupButton() {
-        newPostButton = UIButton(frame: CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width - 20, height: 50))
-        newPostButton.setTitle("Add Post", for: .normal)
-        newPostButton.setTitleColor(UIColor.blue, for: .normal)
-        newPostButton.layoutIfNeeded()
-        newPostButton.layer.borderWidth = 2.0
-        newPostButton.layer.cornerRadius = 3.0
-        newPostButton.layer.borderColor = UIColor.blue.cgColor
-        newPostButton.layer.masksToBounds = true
-        newPostButton.addTarget(self, action: #selector(addNewPost), for: .touchUpInside)
-        view.addSubview(newPostButton)
-    }
-    
-    
     func setupCollectionView() {
-        let frame = CGRect(x: 10, y: newPostButton.frame.maxY + 10, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height - newPostButton.frame.maxY - 20)
+        let frame = CGRect(x: 10, y: 10 + (self.navigationController?.navigationBar.frame.maxY)!, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height - 20)
         let cvLayout = UICollectionViewFlowLayout()
         postCollectionView = UICollectionView(frame: frame, collectionViewLayout: cvLayout)
         postCollectionView.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: "post")
-        
         postCollectionView.backgroundColor = UIColor.lightGray
         view.addSubview(postCollectionView)
-        
-        
-    }
-    
-    func addNewPost(sender: UIButton!) {
-        //TODO: Implement using Firebase!
-        let postText = newPostView.text!
-        self.newPostView.text = ""
-        let newPost = ["text": postText, "poster": currentUser?.name, "imageUrl": currentUser?.imageUrl, "numLikes": 0, "posterId": currentUser?.id] as [String : Any]
-        let key = postsRef.childByAutoId().key
-        let childUpdates = ["/\(key)/": newPost]
-        postsRef.updateChildValues(childUpdates)
     }
     
     func fetchPosts(withBlock: @escaping () -> ()) {
@@ -114,7 +86,6 @@ class FeedViewController: UIViewController {
         ref.child("Posts").observe(.childAdded, with: { (snapshot) in
             let post = Post(id: snapshot.key, postDict: snapshot.value as! [String : Any]?)
             self.posts.insert(post, at: 0)
-            
             withBlock()
         })
     }
@@ -133,25 +104,13 @@ class FeedViewController: UIViewController {
         if segue.identifier == "FeedToDetails" {
             let detailsVC = segue.destination as! DetailsViewController
             detailsVC.post = selectedPost
+            detailsVC.user = currentUser
         }
         else if segue.identifier == "FeedToNewPost" {
             let newPostVC = segue.destination as! NewPostViewController
             newPostVC.user = currentUser
-            // newPostVC.post = currentPost
         }
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 protocol LikeButtonProtocol {
@@ -173,13 +132,21 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = postCollectionView.dequeueReusableCell(withReuseIdentifier: "post", for: indexPath) as! PostCollectionViewCell
+        for subview in cell.contentView.subviews {
+            subview.removeFromSuperview()
+        }
         cell.awakeFromNib()
+
+        // Get image from Firebase
         let postInQuestion = posts[indexPath.row]
-        cell.postText.text = postInQuestion.text
+        postInQuestion.getImage(withBlock: { profImage in
+            DispatchQueue.main.async {
+                cell.profileImage.image = profImage
+            }
+        })
+        cell.postText.text = postInQuestion.postText
         cell.posterText.text = postInQuestion.poster
-        
-        //TODO(?) Get image from Firebase Storage and put it on the post
-        //Uncomment code below to see sample post with profile picture
+        cell.post = postInQuestion
         cell.profileImage.image = UIImage()
         print(cell.bounds)
         print(UIScreen.main.bounds)

@@ -85,7 +85,6 @@ class SignUpViewController: UIViewController {
     }
     
     func setupButtons() {
-        
         signupButton = UIButton(frame: CGRect(x: 10, y: 0.8 * UIScreen.main.bounds.height, width: UIScreen.main.bounds.width - 20, height: 30))
         signupButton.layoutIfNeeded()
         signupButton.setTitle("Sign Up", for: .normal)
@@ -134,15 +133,4 @@ class SignUpViewController: UIViewController {
     func goBackButtonClicked() {
         self.dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
