@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nh1-jq-rBe">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="yRV-qb-uRq">
+            <objects>
+                <navigationController id="Nh1-jq-rBe" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aNY-cT-fYR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="YGd-sF-pZP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yis-wt-bXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1466" y="36"/>
+        </scene>
+        <!--Feed View Controller-->
+        <scene sceneID="INr-eT-AXW">
+            <objects>
+                <viewController id="RxB-aM-pkc" customClass="FeedViewController" customModule="Event_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q2x-5Q-KdJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="g5P-QW-ooQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6gc-Fn-IRd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="tGw-Zf-uRV" kind="presentation" identifier="toPost" id="CVk-LB-1wl"/>
+                        <segue destination="iaH-ZC-xJn" kind="presentation" identifier="toDetail" id="JTI-bw-Qyf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kE0-We-E0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="182" y="36"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="lTU-dp-Wmi">
+            <objects>
+                <viewController id="iaH-ZC-xJn" customClass="DetailViewController" customModule="Event_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dMW-oh-OTo"/>
+                        <viewControllerLayoutGuide type="bottom" id="uHJ-H0-HUm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u28-0v-Scc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q2D-3T-OZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="985" y="417"/>
+        </scene>
+        <!--New Post View Controller-->
+        <scene sceneID="uHw-cB-FPt">
+            <objects>
+                <viewController id="tGw-Zf-uRV" customClass="NewPostViewController" customModule="Event_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="24b-7d-yR3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Euv-p6-9DC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aa1-ZZ-HZy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CiF-8o-EYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986" y="-349"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Event_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LfP-6B-dHL"/>
+                    <connections>
+                        <segue destination="fhQ-fm-NFs" kind="show" identifier="toSignup" id="EQb-Qa-D8O"/>
+                        <segue destination="RxB-aM-pkc" kind="show" identifier="toFeed" id="Vr6-II-rNj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-682" y="36"/>
+        </scene>
+        <!--Signup View Controller-->
+        <scene sceneID="yXH-qH-yw4">
+            <objects>
+                <viewController id="fhQ-fm-NFs" customClass="SignupViewController" customModule="Event_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cTH-dF-Mid"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Pl-hL-u7B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o0s-k3-cAt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="RxB-aM-pkc" kind="show" identifier="toFeed" id="fRA-Hd-pNG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ib-eP-YBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-682" y="795"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fRA-Hd-pNG"/>
+    </inferredMetricsTieBreakers>
+</document>
