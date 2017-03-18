@@ -1,0 +1,17 @@
+{
+  "stickers" : [
+    {
+      "filename" : "loading-1.sticker"
+    },
+    {
+      "filename" : "loading.sticker"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "grid-size" : "small"
+  }
+}
